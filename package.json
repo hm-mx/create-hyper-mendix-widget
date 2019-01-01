@@ -6,6 +6,9 @@
 	"scripts": {
 		"start": "node ./cli.js"
 	},
+	"bin": {
+		"create-hyper-mendix-widget": "./cli.js"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/najjar-osama/create-hyper-mendix-widget.git"
