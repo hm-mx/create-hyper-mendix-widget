@@ -1,28 +1,29 @@
 {
-  "name": "create-hyper-mendix-widget",
-  "version": "1.0.0",
-  "description": "create a hyper mendix widget",
-  "main": "cli.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/najjar-osama/create-hyper-mendix-widget.git"
-  },
-  "keywords": [
-    "mendix",
-    "widget",
-    "hyperapp",
-    "javascript"
-  ],
-  "author": "Osama Mohammad Najjar",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/najjar-osama/create-hyper-mendix-widget/issues"
-  },
-  "homepage": "https://github.com/najjar-osama/create-hyper-mendix-widget#readme",
-  "dependencies": {
-    "commander": "^2.19.0"
-  }
+	"name": "create-hyper-mendix-widget",
+	"version": "1.0.0",
+	"description": "create a hyper mendix widget",
+	"main": "cli.js",
+	"scripts": {
+		"start": "node ./cli.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/najjar-osama/create-hyper-mendix-widget.git"
+	},
+	"keywords": [
+		"mendix",
+		"widget",
+		"hyperapp",
+		"javascript"
+	],
+	"author": "Osama Mohammad Najjar",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/najjar-osama/create-hyper-mendix-widget/issues"
+	},
+	"homepage": "https://github.com/najjar-osama/create-hyper-mendix-widget#readme",
+	"dependencies": {
+		"commander": "^2.19.0",
+		"inquirer": "^6.2.1"
+	}
 }
