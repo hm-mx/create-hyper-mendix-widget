@@ -3,7 +3,7 @@
 const inquirer = require('inquirer');
 const prompt = inquirer.createPromptModule();
 const questions = require('./cli/questions');
-const { makeWidgetDir, changeToWidgetDir } = require('./cli/commands');
+const { makeWidgetDir } = require('./cli/commands');
 const { greet } = require('./cli/instructions');
 
 (async () => {
