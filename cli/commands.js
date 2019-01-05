@@ -1,14 +1,15 @@
 const shell = require('shelljs');
 const fs = require('fs');
 const chalk = require('chalk');
+const { dirAlreadyExisted } = require('./instructions');
 
 module.exports = {
-	mkdir(dirName) {
+	makeWidgetDir(dirName) {
 		const nextDirName = dirName.trim();
 		if (!fs.existsSync(nextDirName)) {
 			shell.mkdir(nextDirName);
 		} else {
-			console.log(chalk.yellow(`There is already a dir called ${nextDirName}`));
+			dirAlreadyExisted(dirName);
 			process.exit(0);
 		}
 	}
