@@ -3,11 +3,11 @@
 const inquirer = require('inquirer');
 const prompt = inquirer.createPromptModule();
 const questions = require('./cli/questions');
-const cmd = require('./cli/commands');
-const insructions = require('./cli/instructions');
+const { makeWidgetDir, changeToWidgetDir } = require('./cli/commands');
+const { greet } = require('./cli/instructions');
 
 (async () => {
-	insructions.greet();
+	greet();
 	const answers = await prompt(questions);
-	cmd.mkdir(answers.widgetName);
+	makeWidgetDir(answers.widgetName);
 })();
