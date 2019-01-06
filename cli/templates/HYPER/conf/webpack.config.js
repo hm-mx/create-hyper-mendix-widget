@@ -93,7 +93,11 @@ module.exports = {
 		{ dojoBaseDeclare: 'dojo/_base/declare' },
 		/mx|mxui|mendix|dijit|dojo|require/
 	],
-	plugins: [
+	plugins: _getPlugins()
+};
+
+function _getPlugins() {
+	const plugins = [
 		new MiniCssExtractPlugin({
 			filename: `${widgetUIDir}/${widgetConf.name}.css`
 		}),
@@ -104,11 +108,16 @@ module.exports = {
 			output: `${paths.distDir}/${widgetConf.name}`,
 			format: 'zip',
 			ext: 'mpk'
-		}),
-		new ArchivePlugin({
-			output: `${paths.mxTestProjectDir}/widgets/${widgetConf.name}`,
-			format: 'zip',
-			ext: 'mpk'
 		})
-	]
-};
+	];
+	if (paths.mxProjectRootDir) {
+		plugins.push(
+			new ArchivePlugin({
+				output: `${paths.mxProjectRootDir}/widgets/${widgetConf.name}`,
+				format: 'zip',
+				ext: 'mpk'
+			})
+		);
+	}
+	return plugins;
+}
