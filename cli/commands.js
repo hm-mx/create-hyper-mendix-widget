@@ -106,9 +106,14 @@ function installDependencies(dirName) {
 	shell.cd(dirName);
 	return shell.exec('npm install', { silent: true }).code === 0; // success
 }
+
+function buildingInitialWidget() {
+	return shell.exec('npm run build', { silent: true }).code === 0; // success
+}
 module.exports = {
 	makeWidgetDir,
 	copyWidgetFiles,
 	initWidget,
-	installDependencies
+	installDependencies,
+	buildingInitialWidget
 };

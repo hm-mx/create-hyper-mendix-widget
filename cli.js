@@ -3,9 +3,14 @@
 const inquirer = require('inquirer');
 const prompt = inquirer.createPromptModule();
 const Spinner = require('ora');
-const spinnerTypes = require('cli-spinners');
 const questions = require('./cli/questions');
-const { makeWidgetDir, copyWidgetFiles, initWidget, installDependencies } = require('./cli/commands');
+const {
+	makeWidgetDir,
+	copyWidgetFiles,
+	initWidget,
+	installDependencies,
+	buildingInitialWidget
+} = require('./cli/commands');
 const { greet } = require('./cli/instructions');
 
 (async () => {
@@ -33,6 +38,10 @@ const { greet } = require('./cli/instructions');
 		color: 'blue'
 	});
 
+	const buildingInitialWidgetSpinner = Spinner({
+		text: 'Building initial widget...',
+		color: 'blue'
+	});
 	// 1. create directory for the widget
 	makeWidgetDirSpinner.start();
 	if (makeWidgetDir(cleanWidgetDirName)) {
@@ -74,6 +83,17 @@ const { greet } = require('./cli/instructions');
 	} else {
 		installDependenciesSpinner.color = 'red';
 		installDependenciesSpinner.fail('Oops! something went wrong while installing widget dependencies.');
+		process.exit(0);
+	}
+
+	// 5. Building initial widget
+	buildingInitialWidgetSpinner.start();
+	if (buildingInitialWidget()) {
+		buildingInitialWidgetSpinner.color = 'green';
+		buildingInitialWidgetSpinner.succeed('Successfully built widget!');
+	} else {
+		buildingInitialWidgetSpinner.color = 'red';
+		buildingInitialWidgetSpinner.fail('Oops! something went wrong while building widget.');
 		process.exit(0);
 	}
 })();
