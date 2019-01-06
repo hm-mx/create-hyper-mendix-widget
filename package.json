@@ -1,6 +1,6 @@
 {
 	"name": "create-hyper-mendix-widget",
-	"version": "1.0.0",
+	"version": "0.0.1",
 	"description": "create a hyper mendix widget",
 	"main": "cli.js",
 	"scripts": {
@@ -13,12 +13,7 @@
 		"type": "git",
 		"url": "git+https://github.com/najjar-osama/create-hyper-mendix-widget.git"
 	},
-	"keywords": [
-		"mendix",
-		"widget",
-		"hyperapp",
-		"javascript"
-	],
+	"keywords": [ "mendix", "widget", "hyperapp", "javascript" ],
 	"author": "Osama Mohammad Najjar",
 	"license": "MIT",
 	"bugs": {
@@ -28,8 +23,15 @@
 	"dependencies": {
 		"boxen": "^2.1.0",
 		"chalk": "^2.4.1",
+		"cli-progress-bar": "^1.0.1",
 		"commander": "^2.19.0",
+		"fs-extra": "^7.0.1",
 		"inquirer": "^6.2.1",
+		"ora": "^3.0.0",
+		"replace": "^1.0.1",
 		"shelljs": "^0.8.3"
+	},
+	"devDependencies": {
+		"cli-spinners": "^1.3.1"
 	}
 }
