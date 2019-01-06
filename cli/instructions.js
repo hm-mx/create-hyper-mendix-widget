@@ -1,16 +1,16 @@
-const boxen = require('boxen');
 const chalk = require('chalk');
+const package = require('../package.json');
 module.exports = {
-	greet() {
+	sayHello() {
 		console.log(
-			boxen(`${chalk.blue('CHMK - Create Hyper Mendix Widget')} ${chalk.bold('v.1.0.0')}`, {
-				padding: 1,
-				margin: 2,
-				borderStyle: 'round',
-				borderColor: 'blue'
-			})
+			`
+			${chalk.bold('\n🚀 🚀  Create Hyper Mendix Widget!')}${chalk.magenta(` (v${package.version})`)}\n\n${chalk.blue(
+				'>> Interactive tool for generating Hyper Mendix Widgets!\n>> More info? Please visit: https://github.com/omnajjar/create-hyper-mendix-widget'
+			)}\n${chalk.yellow(
+				'>> Any Issue? Please report them at: https://github.com/omnajjar/create-hyper-mendix-widget/issues'
+			)}
+			`
 		);
-		//console.log(boxen('Create Hyper Mendix Widget', { padding: 1 }));
 	},
 	dirAlreadyExisted(dirName) {
 		console.log(chalk.yellow(`There is already a dir called ${dirName}`));
