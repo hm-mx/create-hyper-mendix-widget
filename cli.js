@@ -11,10 +11,10 @@ const {
 	installDependencies,
 	buildingInitialWidget
 } = require('./cli/commands');
-const { greet } = require('./cli/instructions');
+const { sayHello, dirAlreadyExisted } = require('./cli/instructions');
 
 (async () => {
-	greet();
+	sayHello();
 	const answers = await prompt(questions);
 	const cleanWidgetDirName = answers.widgetName.trim();
 
@@ -50,6 +50,7 @@ const { greet } = require('./cli/instructions');
 	} else {
 		makeWidgetDirSpinner.color = 'red';
 		makeWidgetDirSpinner.fail('Oops! something went wrong while creating widget directory.');
+		dirAlreadyExisted(cleanWidgetDirName);
 		process.exit(0);
 	}
 
