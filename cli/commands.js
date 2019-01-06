@@ -1,9 +1,7 @@
 const shell = require('shelljs');
 const fs = require('fs-extra');
 const path = require('path');
-const chalk = require('chalk');
 const replace = require('replace');
-const { dirAlreadyExisted } = require('./instructions');
 const TEMPLATES = require('./TEMPLATES');
 const widgetCraetorModuleName = 'create-hyper-mendix-widget';
 

@@ -1,5 +1,6 @@
 const chalk = require('chalk');
 const package = require('../package.json');
+const warning = chalk.keyword('orange');
 module.exports = {
 	sayHello() {
 		console.log(
@@ -13,6 +14,6 @@ module.exports = {
 		);
 	},
 	dirAlreadyExisted(dirName) {
-		console.log(chalk.yellow(`There is already a dir called ${dirName}`));
+		console.log(warning(`It seems that there is already a folder with the name '${dirName}'.`));
 	}
 };
