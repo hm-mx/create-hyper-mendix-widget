@@ -13,7 +13,12 @@
 		"type": "git",
 		"url": "git+https://github.com/najjar-osama/create-hyper-mendix-widget.git"
 	},
-	"keywords": [ "mendix", "widget", "hyperapp", "javascript" ],
+	"keywords": [
+		"mendix",
+		"widget",
+		"hyperapp",
+		"javascript"
+	],
 	"author": "Osama Mohammad Najjar",
 	"license": "MIT",
 	"bugs": {
@@ -22,10 +27,12 @@
 	"homepage": "https://github.com/najjar-osama/create-hyper-mendix-widget#readme",
 	"dependencies": {
 		"boxen": "^2.1.0",
+		"cfonts": "^2.3.0",
 		"chalk": "^2.4.1",
 		"cli-progress-bar": "^1.0.1",
 		"commander": "^2.19.0",
 		"fs-extra": "^7.0.1",
+		"gradient-string": "^1.2.0",
 		"inquirer": "^6.2.1",
 		"ora": "^3.0.0",
 		"replace": "^1.0.1",
