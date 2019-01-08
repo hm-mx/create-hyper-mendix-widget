@@ -4,6 +4,7 @@ const XMLPlugin = require('xml-webpack-plugin');
 const ArchivePlugin = require('webpack-archive-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const fs = require('fs-extra');
 
 const MODES = {
     DEV: 'development',
@@ -97,6 +98,8 @@ module.exports = {
 };
 
 function _getPlugins() {
+    //ensure distDir fir Archive Plugin
+    fs.ensureDirSync(paths.distDir);
     const plugins = [
         new MiniCssExtractPlugin({
             filename: `${widgetUIDir}/${widgetConf.name}.css`
