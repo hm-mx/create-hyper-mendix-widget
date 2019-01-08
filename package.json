@@ -1,6 +1,6 @@
 {
     "name": "create-hyper-mendix-widget",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "create a hyper mendix widget",
     "main": "cli.js",
     "scripts": {
