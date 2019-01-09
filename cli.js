@@ -11,7 +11,11 @@ const {
     installDependencies,
     buildingInitialWidget
 } = require('./cli/commands');
-const { sayHello, dirAlreadyExisted, afterInstallMessage } = require('./cli/instructions');
+const {
+    sayHello,
+    dirAlreadyExisted,
+    afterInstallMessage
+} = require('./cli/instructions');
 
 (async () => {
     sayHello();
@@ -46,7 +50,7 @@ const { sayHello, dirAlreadyExisted, afterInstallMessage } = require('./cli/inst
     makeWidgetDirSpinner.start();
     if (makeWidgetDir(cleanWidgetDirName)) {
         makeWidgetDirSpinner.color = 'green';
-        makeWidgetDirSpinner.succeed('Successfully created widget direcotry!');
+        makeWidgetDirSpinner.succeed('Successfully created widget directory!');
     } else {
         makeWidgetDirSpinner.color = 'red';
         makeWidgetDirSpinner.fail('Oops! something went wrong while creating widget directory.');
@@ -58,7 +62,7 @@ const { sayHello, dirAlreadyExisted, afterInstallMessage } = require('./cli/inst
     copyWidgetFilesSpinner.start();
     if (copyWidgetFiles(cleanWidgetDirName, answers.template)) {
         copyWidgetFilesSpinner.color = 'green';
-        copyWidgetFilesSpinner.succeed('Successfully copied files to widget direcotry!');
+        copyWidgetFilesSpinner.succeed('Successfully copied files to widget directory!');
     } else {
         copyWidgetFilesSpinner.color = 'red';
         copyWidgetFilesSpinner.fail('Oops! something went wrong while copying files to widget directory.');
