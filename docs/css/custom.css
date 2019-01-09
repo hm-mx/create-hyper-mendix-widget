@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
 }
+
 .logo {
     height: 80px;
     width: auto;
@@ -12,4 +13,17 @@
 
 .full-width {
     width: 100% !important;
+}
+
+.code {
+    box-shadow: none !important;
+}
+
+.code-small {
+    font-size: 8px !important;
+}
+
+.no-edit {
+    pointer-events: none;
+    cursor: pointer;
 }
