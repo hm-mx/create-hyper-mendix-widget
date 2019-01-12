@@ -1,5 +1,4 @@
-module.exports = [
-	{
+module.exports = [{
 		type: 'input',
 		name: 'widgetName',
 		message: 'Widget Name:',
@@ -71,8 +70,8 @@ module.exports = [
 	{
 		type: 'list',
 		name: 'template',
-		message: "Which template you'd like to use:",
-		choices: [ 'Hyper!', 'ES6 only!' ],
+		message: "Which template you'd like to use (Vue.js is comming soon!):",
+		choices: ['Hyper!', 'React!', 'ES6 only!'],
 		default: 'Hyper!'
 	}
 ];
