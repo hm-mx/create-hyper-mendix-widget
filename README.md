@@ -1,7 +1,7 @@
 # Create Hyper Mendix Widget
 
 <p align='center'>
-<img src='https://cdn.rawgit.com/facebook/create-react-app/27b42ac/screencast.svg' width='600' alt='npm start'>
+<img src='https://github.com/omnajjar/create-hyper-mendix-widget/blob/master/logo.PNG' alt='logo'>
 </p>
 
 Create hyper mendix widget is a CLI tool generates different implementations of **'Hyper Mendix Widget'** Abstraction or Design principle.<br>
