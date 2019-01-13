@@ -1,7 +1,7 @@
 # Create Hyper Mendix Widget
 
 <p align='center'>
-<img src='https://github.com/omnajjar/create-hyper-mendix-widget/blob/master/logo.PNG' alt='logo'>
+<img src='https://github.com/omnajjar/create-hyper-mendix-widget/blob/master/logo.PNG' width="300px" alt='logo'>
 </p>
 
 Create hyper mendix widget is a CLI tool generates different implementations of **'Hyper Mendix Widget'** Abstraction or Design principle.<br>
