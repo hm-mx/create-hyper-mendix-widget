@@ -1,11 +1,13 @@
-@import url("https://fonts.googleapis.com/css?family=Ubuntu:400,500,700");
-.counter {
+.react-counter {
 	background-color: rgba(0, 0, 0, .5);
-	border-bottom: 5px solid #ceb223;
+	border-bottom: 5px solid #0190b7;
 	font-family: "Ubuntu", sans-serif;
+	margin-bottom: 15px;
+
 	.counter-header {
 		padding: 10px;
 		text-align: center;
+
 		h1 {
 			color: #fff;
 			display: inline;
@@ -14,8 +16,9 @@
 			margin: 0 10px;
 			user-select: none;
 		}
+
 		span {
-			color: #ffd600;
+			color: #61DAFB;
 			display: inline;
 			font-size: 50px;
 			position: relative;
@@ -23,17 +26,21 @@
 			top: 7px;
 		}
 	}
+
 	.counter-count {
 		font-size: 80px;
 		font-weight: bold;
 		text-align: center;
-		color: #ffd600;
+		color: #61DAFB;
 		-webkit-text-stroke: 4px #fff;
 	}
+
 	.controls-wrapper {
+		display: flex;
 	}
+
 	.counter-btn {
-		background-color: #ffd600;
+		background-color: #61DAFB;
 		border: none;
 		color: #fff;
 		font-size: 35px;
@@ -42,8 +49,9 @@
 		text-align: center;
 		transition: all .2s ease-in-out;
 		width: 50%;
+
 		&:hover {
-			background-color: #ceb223;
+			background-color: #0190b7;
 		}
 	}
 }

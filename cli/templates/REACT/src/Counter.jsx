@@ -15,10 +15,10 @@ class Counter extends React.Component {
     }
     render() {
         return (
-            <div className="counter">
+            <div className="react-counter">
                 <div className="counter-header">
                     <span>•••</span>
-                    <h1>My Cool React Counter</h1>
+                    <h1>{this.props.dummyKey}</h1>
                     <span>•••</span>
                 </div>
                 <h1 className="counter-count">{this.state.count}</h1>
