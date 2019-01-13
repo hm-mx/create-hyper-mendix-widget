@@ -3,7 +3,7 @@ import declare from 'dojoBaseDeclare';
 import * as widgetConf from '../conf/widget.config.json';
 import './style/style.scss';
 
-import app from './app';
+import Counter from './Counter';
 
 export default declare(`${widgetConf.name}.widget.${widgetConf.name}`, [ _widgetBase ], {
 	constructor() {},
@@ -12,7 +12,7 @@ export default declare(`${widgetConf.name}.widget.${widgetConf.name}`, [ _widget
 	},
 	update(contextObject, callback) {
 		console.debug(`${this.id} >> update`);
-		app(this.domNode);
+		Counter({dummyKey : this.dummyKey},this.domNode);
 		callback();
 	}
 });
