@@ -22,7 +22,7 @@ function _getWidgetCreatorModulePath() {
 }
 
 function _getTemplateName(userSelectedTemplate) {
-	if (userSelectedTemplate === 'Hyper!') return TEMPLATES.HYPER;
+	if (userSelectedTemplate === 'Hyperapp!') return TEMPLATES.HYPER;
 	if (userSelectedTemplate === 'ES6 only!') return TEMPLATES.ES6;
 	if (userSelectedTemplate === 'React!') return TEMPLATES.REACT;
 	if (userSelectedTemplate === 'Vue!') return TEMPLATES.VUE;

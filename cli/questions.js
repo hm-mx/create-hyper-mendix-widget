@@ -70,8 +70,8 @@ module.exports = [{
 	{
 		type: 'list',
 		name: 'template',
-		message: "Which template you'd like to use (Vue.js is comming soon!):",
-		choices: ['Hyper!', 'React!', 'Vue!', 'ES6 only!'],
-		default: 'Hyper!'
+		message: "Which implementation you'd like to use (More frameworks are comming soon!):",
+		choices: ['Hyperapp!', 'React!', 'Vue!', 'ES6 only!'],
+		default: 'Hyperapp!'
 	}
 ];

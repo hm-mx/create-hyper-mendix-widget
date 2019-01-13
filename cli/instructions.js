@@ -2,11 +2,16 @@ const chalk = require('chalk');
 const package = require('../package.json');
 const warning = chalk.keyword('orange');
 const boxen = require('boxen');
+
+const emojiSupported = process.platform !== 'win32';
+
+
+
 module.exports = {
     sayHello() {
         console.log(
             `
-			${chalk.bold('\n🚀 🚀  Create Hyper Mendix Widget!')}${chalk.magenta(` (v${package.version})`)}\n\n${chalk.blue(
+			${chalk.bold(`\n${emojiSupported?('🚀 🚀  ') : ''}Create Hyper Mendix Widget!`)}${chalk.magenta(` (v${package.version})`)}\n\n${chalk.blue(
                 '>> Interactive tool for generating Hyper Mendix Widgets!\n>> More info? Please visit: https://github.com/omnajjar/create-hyper-mendix-widget'
             )}\n${chalk.yellowBright(
                 '>> Any Issue? Please report them at: https://github.com/omnajjar/create-hyper-mendix-widget/issues'
@@ -15,7 +20,7 @@ module.exports = {
         );
     },
     afterInstallMessage(widgteDirName) {
-        console.log(`${chalk.bold("\n😎  Nice! we're ready to go! 🛴")}`);
+        console.log(`${chalk.bold(`\n${emojiSupported?('😎  '):''}Nice! we're ready to go! ${emojiSupported?('🛴'):''}`)}`);
         console.log(
             boxen(
                 chalk.cyanBright(
@@ -24,8 +29,11 @@ module.exports = {
                     )}\n$ npm run dev\n\n${chalk.white(
                         '//For production (minified & uglified, no source maps) run:'
                     )}\n$ npm run build\n`
-                ),
-                { padding: 1, margin: 0, borderStyle: 'round' }
+                ), {
+                    padding: 1,
+                    margin: 0,
+                    borderStyle: 'round'
+                }
             )
         );
     },
