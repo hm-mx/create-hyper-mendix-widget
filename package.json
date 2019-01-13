@@ -17,7 +17,10 @@
         "mendix",
         "widget",
         "hyperapp",
-        "javascript"
+        "javascript",
+        "react",
+        "vue",
+        "ES6"
     ],
     "author": "Osama Mohammad Najjar",
     "license": "MIT",
