@@ -10,7 +10,7 @@ const actions = {
 };
 
 const counter = (state, actions) => (
-	<div className="counter">
+	<div className="hyperapp-counter">
 		<div className="counter-header">
 			<span>•••</span>
 			<h1>My Cool Counter</h1>
