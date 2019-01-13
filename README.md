@@ -46,6 +46,17 @@ $ create-hyper-mendix-widget
 - [ES6 (Vanilla JS)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 
+
+## Available Scripts
+
+- `npm run dev` or `yarn dev`
+will watch for any changes you made and build unoptimized version of your widget with a source map for debugging.
+
+- `npm run build` or `yarn build`
+will build an optimized (minified & uglified) version of your widget & no source maps will be genrated.
+
+
+
 ## Issues
 If something doesn’t work, please [file an issue](https://github.com/omnajjar/create-hyper-mendix-widget/issues/new).
 
