@@ -71,7 +71,7 @@ module.exports = [{
 		type: 'list',
 		name: 'template',
 		message: "Which template you'd like to use (Vue.js is comming soon!):",
-		choices: ['Hyper!', 'React!', 'ES6 only!'],
+		choices: ['Hyper!', 'React!', 'Vue!', 'ES6 only!'],
 		default: 'Hyper!'
 	}
 ];
