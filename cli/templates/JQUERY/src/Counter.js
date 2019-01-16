@@ -20,7 +20,7 @@ export default function (widgetProps, mountingNode) {
     // Controls wrapper
     const controlsWrapper = $("<div></div>").addClass("controls-wrapper")
         .append($("<button></button>").addClass("counter-btn").text("-").click(e => {
-            const counter = $(counterWrapper).find(".jquery-counter h1.counter-count");
+            const counter = $(counterWrapper).find("h1.counter-count");
             counter.text(parseInt(counter.text(), 10) - 1);
         }))
         .append($("<button></button>").addClass("counter-btn").text("+").click(e => {
