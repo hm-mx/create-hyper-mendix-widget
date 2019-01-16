@@ -26,6 +26,7 @@ function _getTemplateName(userSelectedTemplate) {
 	if (userSelectedTemplate === 'ES6 only!') return TEMPLATES.ES6;
 	if (userSelectedTemplate === 'React!') return TEMPLATES.REACT;
 	if (userSelectedTemplate === 'Vue!') return TEMPLATES.VUE;
+	if (userSelectedTemplate === 'JQuery!') return TEMPLATES.JQUERY;
 }
 
 function makeWidgetDir(dirName) {
