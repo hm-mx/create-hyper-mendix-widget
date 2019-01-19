@@ -2,8 +2,9 @@ const shell = require('shelljs');
 const fs = require('fs-extra');
 const path = require('path');
 const replace = require('replace');
-const TEMPLATES = require('./templates/TEMPLATES');
-const widgetCraetorModuleName = 'create-hyper-mendix-widget';
+const IMPLEMENTATIONS = require('./implementations/IMPLEMENTATIONS');
+
+const widgetCreatorModuleName = 'create-hyper-mendix-widget';
 
 function _getWidgetCreatorModulePath() {
 	const npmGlobalModulesRoot = shell.exec('npm root -g', {
@@ -12,8 +13,8 @@ function _getWidgetCreatorModulePath() {
 	const npmLocalModulesRoot = shell.exec('npm root', {
 		silent: true
 	}).stdout.trim();
-	const widgetCreatorGlobalModulePath = path.join(npmGlobalModulesRoot, widgetCraetorModuleName);
-	const widgetCreatorLocalModulePath = path.join(npmLocalModulesRoot, widgetCraetorModuleName);
+	const widgetCreatorGlobalModulePath = path.join(npmGlobalModulesRoot, widgetCreatorModuleName);
+	const widgetCreatorLocalModulePath = path.join(npmLocalModulesRoot, widgetCreatorModuleName);
 	// if the creator module was installed locally then favor it on the globally installed module.
 	if (fs.existsSync(widgetCreatorLocalModulePath)) {
 		return widgetCreatorLocalModulePath;
@@ -21,12 +22,12 @@ function _getWidgetCreatorModulePath() {
 	return widgetCreatorGlobalModulePath;
 }
 
-function _getTemplateName(userSelectedTemplate) {
-	if (userSelectedTemplate === 'Hyperapp!') return TEMPLATES.HYPER;
-	if (userSelectedTemplate === 'ES6 only!') return TEMPLATES.ES6;
-	if (userSelectedTemplate === 'React!') return TEMPLATES.REACT;
-	if (userSelectedTemplate === 'Vue!') return TEMPLATES.VUE;
-	if (userSelectedTemplate === 'JQuery!') return TEMPLATES.JQUERY;
+function _getImplementationName(userSelectedImplementation) {
+	if (userSelectedImplementation === 'Hyperapp!') return IMPLEMENTATIONS.HYPER;
+	if (userSelectedImplementation === 'ES6 only!') return IMPLEMENTATIONS.ES6;
+	if (userSelectedImplementation === 'React!') return IMPLEMENTATIONS.REACT;
+	if (userSelectedImplementation === 'Vue!') return IMPLEMENTATIONS.VUE;
+	if (userSelectedImplementation === 'JQuery!') return IMPLEMENTATIONS.JQUERY;
 }
 
 function makeWidgetDir(dirName) {
@@ -37,11 +38,11 @@ function makeWidgetDir(dirName) {
 	}
 }
 
-function copyWidgetFiles(dirName, selectedTemplate) {
+function copyWidgetFiles(dirName, selectedImplementation) {
 	const widgetCreatorModulePath = _getWidgetCreatorModulePath();
 	if (widgetCreatorModulePath) {
 		fs.copySync(
-			path.join(widgetCreatorModulePath, 'cli', 'templates', _getTemplateName(selectedTemplate)),
+			path.join(widgetCreatorModulePath, 'cli', 'implementations', _getImplementationName(selectedImplementation)),
 			path.normalize(dirName)
 		);
 		return true;
