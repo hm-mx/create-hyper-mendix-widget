@@ -2,7 +2,10 @@ const path = require('path');
 
 module.exports = {
 	srcDir: path.join(__dirname, '..', 'src'),
-	srcEntry: './src/index.js',
+	srcEntries: {
+		main: './src/index.jsx',
+		preview: './src/index.preview.jsx'
+	},
 	confDir: __dirname,
 	distDir: path.join(__dirname, '..', 'dist'),
 	buildDir: path.join(__dirname, '..', 'build'),

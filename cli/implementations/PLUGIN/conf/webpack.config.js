@@ -39,7 +39,7 @@ module.exports = {
     target: 'web',
     devtool: isDev ? 'eval-source-map' : false,
     watch: isDev,
-    entry: paths.srcEntry,
+    entry: paths.srcEntries,
     output: {
         path: isDev ? paths.buildDir : paths.distDir,
         filename: `${widgetDir}/${widgetConf.name}.js`,
