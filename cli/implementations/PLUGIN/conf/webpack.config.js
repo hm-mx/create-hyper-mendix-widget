@@ -95,13 +95,9 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx'],
     },
-    externals: [{
-            MxWidgetBase: 'mxui/widget/_WidgetBase'
-        },
-        {
-            dojoBaseDeclare: 'dojo/_base/declare'
-        },
-        /mx|mxui|mendix|dijit|dojo|require/
+    externals: [
+        "react",
+        "react-dom"
     ],
     plugins: _getPlugins()
 };
