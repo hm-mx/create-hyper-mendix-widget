@@ -71,7 +71,7 @@ module.exports = [{
 		type: 'list',
 		name: 'template',
 		message: "Which implementation you'd like to use (More frameworks are comming soon!):",
-		choices: ['Hyperapp!', 'React!', 'Vue!', "JQuery!", 'ES6 only!'],
-		default: 'Hyperapp!'
+		choices: ['Plugin widget!', 'Hyperapp!', 'React!', 'Vue!', "JQuery!", 'ES6 only!'],
+		default: 'Plugin widget!'
 	}
 ];

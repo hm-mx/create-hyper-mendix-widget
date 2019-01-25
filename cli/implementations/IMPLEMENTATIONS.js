@@ -3,5 +3,6 @@ module.exports = {
 	ES6: 'ES6',
 	REACT: 'REACT',
 	VUE: 'VUE',
-	JQUERY: "JQUERY"
+	JQUERY: "JQUERY",
+	PLUGIN: "PLUGIN"
 };
