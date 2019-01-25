@@ -42,8 +42,8 @@ module.exports = {
     entry: paths.srcEntries,
     output: {
         path: isDev ? paths.buildDir : paths.distDir,
-        filename: `${widgetDir}/${widgetConf.name}.js`,
-        libraryTarget: 'amd'
+        filename: `${widgetDir}/[name].js`,
+        libraryTarget: 'umd'
     },
     optimization: {
         minimizer: [
