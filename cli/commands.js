@@ -23,7 +23,6 @@ function _getWidgetCreatorModulePath() {
 }
 
 function _getImplementationName(userSelectedImplementation) {
-	if (userSelectedImplementation === 'Plugin widget!') return IMPLEMENTATIONS.PLUGIN;
 	if (userSelectedImplementation === 'Hyperapp!') return IMPLEMENTATIONS.HYPER;
 	if (userSelectedImplementation === 'ES6 only!') return IMPLEMENTATIONS.ES6;
 	if (userSelectedImplementation === 'React!') return IMPLEMENTATIONS.REACT;
