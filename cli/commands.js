@@ -28,6 +28,7 @@ function _getImplementationName(userSelectedImplementation) {
 	if (userSelectedImplementation === 'React!') return IMPLEMENTATIONS.REACT;
 	if (userSelectedImplementation === 'Vue!') return IMPLEMENTATIONS.VUE;
 	if (userSelectedImplementation === 'JQuery!') return IMPLEMENTATIONS.JQUERY;
+
 }
 
 function makeWidgetDir(dirName) {
