@@ -4,5 +4,4 @@ module.exports = {
 	REACT: 'REACT',
 	VUE: 'VUE',
 	JQUERY: "JQUERY",
-	PLUGIN: "PLUGIN"
 };
