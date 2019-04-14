@@ -44,7 +44,7 @@ $ create-hyper-mendix-widget
 - [Hyperapp v.1](https://github.com/jorgebucaran/hyperapp)
 - [React (with dojo wrapper)](https://reactjs.org/)
 - [Vue](https://vuejs.org/)
-- [JQuery)](https://jquery.com/)
+- [JQuery](https://jquery.com/)
 - [ES6 (Vanilla JS)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 
