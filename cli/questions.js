@@ -71,7 +71,7 @@ module.exports = [{
 		type: 'list',
 		name: 'template',
 		message: "Which implementation you'd like to use (More frameworks are comming soon!):",
-		choices: ['Hyperapp!', 'React!', 'Vue!', "JQuery!", 'ES6 only!'],
-		default: 'Hyperapp!'
+		choices: ['React (No dojo wrapper, for Mx7.13.1 or Higher)!','Hyperapp!', 'React (with dojo wrapper)!', 'Vue!', "JQuery!", 'ES6 only!'],
+		default: 'React (no dojo wrapper)!'
 	}
 ];
