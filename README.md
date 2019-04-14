@@ -40,9 +40,11 @@ $ create-hyper-mendix-widget
 
 ## Available Implementations
 
+- [React (no dojo wrapper, requires mx7.13.1 or higher)](https://reactjs.org/)
 - [Hyperapp v.1](https://github.com/jorgebucaran/hyperapp)
-- [React](https://reactjs.org/)
+- [React (with dojo wrapper)](https://reactjs.org/)
 - [Vue](https://vuejs.org/)
+- [JQuery)](https://jquery.com/)
 - [ES6 (Vanilla JS)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 
