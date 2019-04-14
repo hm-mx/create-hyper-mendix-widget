@@ -1,0 +1,10 @@
+.editorconfig
+*DS_Store*
+.vscode/
+*.bak
+
+node_modules/
+dist/
+build/
+
+conf/coverage

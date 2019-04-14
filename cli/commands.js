@@ -23,9 +23,10 @@ function _getWidgetCreatorModulePath() {
 }
 
 function _getImplementationName(userSelectedImplementation) {
+	if(userSelectedImplementation === 'React (No dojo wrapper, for Mx7.13.1 or Higher)!') return IMPLEMENTATIONS.REACT_MX7;
 	if (userSelectedImplementation === 'Hyperapp!') return IMPLEMENTATIONS.HYPER;
 	if (userSelectedImplementation === 'ES6 only!') return IMPLEMENTATIONS.ES6;
-	if (userSelectedImplementation === 'React!') return IMPLEMENTATIONS.REACT;
+	if (userSelectedImplementation === 'React (with dojo wrapper)!') return IMPLEMENTATIONS.REACT;
 	if (userSelectedImplementation === 'Vue!') return IMPLEMENTATIONS.VUE;
 	if (userSelectedImplementation === 'JQuery!') return IMPLEMENTATIONS.JQUERY;
 
