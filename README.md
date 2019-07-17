@@ -1,67 +1,65 @@
-# Create Hyper Mendix Widget
+# Create Mendix Widget
 
-<p align='center'>
-<img src='https://github.com/omnajjar/create-hyper-mendix-widget/blob/master/logo.PNG?raw=true' width="300px" alt='logo'>
-</p>
+Create Mendix Widget with one command.
 
-Create hyper mendix widget is a CLI tool generates different implementations of **'Hyper Mendix Widget'** Abstraction or Design principle.<br>
+-   [Requirement](#requirement)
+-   [Create a Mendix widget](#create-a-mendix-widget)
+-   [Available Scripts](#available-scripts)
 
-- [Demo](https://hypermendixwidgetd-sandbox.mxapps.io/index.html?profile=Responsive)
-- [About Hyper Mendix Widget](https://omnajjar.github.io/create-hyper-mendix-widget/)
-- [Installation](#installation)
-- [Quick Overview](#quick-overview)
-- [Available Implementations](#available-implementations)
-- [Available Scripts](#available-scripts)
-- [Issues](#issues)
-- [License](#license)
+Create Mendix Widget works on macOS, Windows, and Linux.
+If something doesn’t work, please [file an issue](https://github.com/hm-mx/create-mendix-widget/issues/new).
 
-Create Hyper Mendix Widget works on macOS, Windows, and Linux.<br>
-If something doesn’t work, please [file an issue](https://github.com/omnajjar/create-hyper-mendix-widget/issues/new).
+## Why
 
+Mendix is moving from Dojo to React very soon. From version 7.13.1 and above, you can already build widgets in React without Dojo. [Pluggable widget](<(https://docs.mendix.com/howto/extensibility/pluggable-widgets)>) is awesome, but it is only available in Mendix 8. Before you upgrade your Mendix app to version 8, you might already want to gradually migrate your widgets to React.
 
-## Installation
+From **version 7.13.1** or higher, you can already build widgets in React without Dojo.
+Yet you might need a tool to help you configure everything for you.
 
+NOTE: if your Mendix is lower than 7.13.1 and you really want to build widgets in React, consider using [create-hyper-mendix-widget](https://github.com/omnajjar/create-hyper-mendix-widget).
 
-```sh
+## Requirement
 
-$ npm install -g create-hyper-mendix-widget
+Mendix version 7.13.1 or higher.
+
+## Create A Mendix Widget
+
+```bash
+
+npx create-mendix-widget awesome-widget
+
+```
+
+During the process, you will be prompt with several questions, such as the path to your Mendix project.
+After it is done, navigate to the folder of your newly-created widget. Run it in dev mode.
+
+In dev mode, any changes you made will trigger an unoptimized build with source maps.
+
+```bash
+
+cd awesome-widget
+npm run dev
 
 ```
 
-## Quick Overview
-After installing `create-hyper-mendix-widget` globally, in your terminal or command line run the following command :
+And then build your Mendix app locally to see it in action!
 
-```sh
+## Build
 
-$ create-hyper-mendix-widget
-
+```bash
+npm run build
 ```
-`create-hyper-mendix-widget` will ask you some questions about your new hyper widget like your widget's name, description, and type of [implementation](#available-implementations).
 
-## Available Implementations
-
-- [React (no dojo wrapper, requires mx7.13.1 or higher)](https://reactjs.org/)
-- [Hyperapp v.1](https://github.com/jorgebucaran/hyperapp)
-- [React (with dojo wrapper)](https://reactjs.org/)
-- [Vue](https://vuejs.org/)
-- [JQuery](https://jquery.com/)
-- [ES6 (Vanilla JS)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-
-
-
-## Available Scripts
-
-- `npm run dev` or `yarn dev`
-will watch for any changes you made and build unoptimized version of your widget with a source map for debugging.
-
-- `npm run build` or `yarn build`
-will build an optimized (minified & uglified) version of your widget & no source maps will be genrated.
-
-
+Build an optimized (minified & uglified) version of your widget without source maps.
 
 ## Issues
-If something doesn’t work, please [file an issue](https://github.com/omnajjar/create-hyper-mendix-widget/issues/new).
+
+If something doesn’t work, please [file an issue](https://github.com/hm-mx/create-mendix-widget/issues/new).
+
+## Acknowledgements
+
+This project is forked from Osama Najjar's [create-hyper-mendix-widget](https://github.com/omnajjar/create-hyper-mendix-widget)
 
 ## License
 
-`create-hyper-mendix-widget` is licensed as MIT.
+`create-mendix-widget` is licensed as MIT.
