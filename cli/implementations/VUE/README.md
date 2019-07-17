@@ -1,2 +1,0 @@
-# <<widgetName>>
-<<widgetDescription>>

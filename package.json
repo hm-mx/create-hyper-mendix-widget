@@ -1,33 +1,34 @@
 {
-    "name": "create-hyper-mendix-widget",
-    "version": "1.5.1",
-    "description": "create a hyper mendix widget",
-    "main": "cli.js",
+    "name": "create-mendix-widget",
+    "version": "0.1.0",
+    "description": "Create a working Mendix widget with one command.",
+    "main": "main.js",
     "scripts": {
-        "start": "node ./cli.js"
+        "start": "node ./main.js"
     },
     "bin": {
-        "create-hyper-mendix-widget": "./cli.js"
+        "create-mendix-widget": "./main.js"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/najjar-osama/create-hyper-mendix-widget.git"
+        "url": "git+https://github.com/hm-mx/create-mendix-widget.git"
     },
     "keywords": [
         "mendix",
         "widget",
-        "hyperapp",
         "javascript",
         "react",
-        "vue",
         "ES6"
     ],
     "author": "Osama Mohammad Najjar",
+    "contributors": [
+        "Huang-Ming Chang <huang.ming.chang@mendix.com>"
+    ],
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/najjar-osama/create-hyper-mendix-widget/issues"
+        "url": "https://github.com/hm-mx/create-mendix-widget/issues"
     },
-    "homepage": "https://github.com/najjar-osama/create-hyper-mendix-widget#readme",
+    "homepage": "https://github.com/hm-mx/create-mendix-widget#readme",
     "dependencies": {
         "boxen": "^2.1.0",
         "cfonts": "^2.3.0",
