@@ -1,7 +1,7 @@
 {
-  "name": "<<widgetNamePcakge>>",
-  "widgetName": "SprintrFeedbackWidgetReact",
-  "widgetFriendlyName": "Feedback & Collaboration Widget",
+  "name": "<<packageName>>",
+  "widgetName": "<<widgetName>>",
+  "widgetFriendlyName": "<<widgetFriendlyName>>",
   "version": "<<version>>",
   "description": "<<widgetDescription>>",
   "main": "index.js",

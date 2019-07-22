@@ -19,7 +19,7 @@ export default function parseStyle(style = '') {
         : styleObject;
     }, {});
   } catch (error) {
-    console.log('Failed to parse style', style, error);
+    console.log('Failed to parse style', style, error); // eslint-disable-line no-console
   }
   return {};
 }

@@ -62,60 +62,74 @@ function copyWidgetFiles(dirName, selectedImplementation) {
 }
 
 function initWidget({
-  widgetName,
+  packageName, // kebab case
   description,
   author,
   email,
   initialVersion,
   license,
 }) {
+  const widgetNameInCamelCase = packageName
+    .split('-')
+    .map(chunk => chunk.charAt(0).toUpperCase() + chunk.slice(1))
+    .join('');
+
+  const widgetFriendlyName = packageName.replace(/-/gi, ' ');
+
   try {
     replace({
-      regex: '<<widgetName>>',
-      replacement: widgetName,
-      paths: [widgetName],
+      regex: '<<packageName>>',
+      replacement: packageName,
+      paths: [packageName],
       recursive: true,
       silent: true,
     });
     replace({
-      regex: '<<widgetNamePcakge>>',
-      replacement: widgetName.toLowerCase(),
-      paths: [widgetName],
+      regex: '<<widgetName>>',
+      replacement: widgetNameInCamelCase,
+      paths: [packageName],
+      recursive: true,
+      silent: true,
+    });
+    replace({
+      regex: '<<widgetFriendlyName>>',
+      replacement: widgetFriendlyName,
+      paths: [packageName],
       recursive: true,
       silent: true,
     });
     replace({
       regex: '<<widgetDescription>>',
       replacement: description,
-      paths: [widgetName],
+      paths: [packageName],
       recursive: true,
       silent: true,
     });
     replace({
       regex: '<<version>>',
       replacement: initialVersion,
-      paths: [widgetName],
+      paths: [packageName],
       recursive: true,
       silent: true,
     });
     replace({
       regex: '<<authorName>>',
       replacement: author,
-      paths: [widgetName],
+      paths: [packageName],
       recursive: true,
       silent: true,
     });
     replace({
       regex: '<<authorEmail>>',
       replacement: email,
-      paths: [widgetName],
+      paths: [packageName],
       recursive: true,
       silent: true,
     });
     replace({
       regex: '<<license>>',
       replacement: license,
-      paths: [widgetName],
+      paths: [packageName],
       recursive: true,
       silent: true,
     });

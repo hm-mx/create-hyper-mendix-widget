@@ -3,9 +3,14 @@
 module.exports = [
   {
     type: 'input',
-    name: 'widgetName',
-    message: 'Widget Name:',
-    default: 'MyAwesomeWidget',
+    name: 'packageName',
+    message: 'Widget Name (using kebab case):',
+    default: 'my-awesome-widget',
+    /**
+     * We use kebab case here because:
+     * 1. it's npm package's convention
+     * 2. we can easily get friendly name
+     */
     validate: input => {
       const validWidgetNameRegex = /^[0-9a-zA-Z_-]+$/;
       const isValid = validWidgetNameRegex.test(input.trim());

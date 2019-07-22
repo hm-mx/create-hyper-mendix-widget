@@ -22,7 +22,7 @@ const { REACT_CLIENT_API } = require('./cli/options');
 (async () => {
   sayHello();
   const answers = await prompt(questions);
-  const cleanWidgetDirName = answers.widgetName.trim();
+  const cleanWidgetDirName = answers.packageName.trim();
 
   const makeWidgetDirSpinner = Spinner({
     text: 'Creating widget directory...',
@@ -67,7 +67,9 @@ const { REACT_CLIENT_API } = require('./cli/options');
   const template = REACT_CLIENT_API;
   if (copyWidgetFiles(cleanWidgetDirName, template)) {
     copyWidgetFilesSpinner.color = 'green';
-    copyWidgetFilesSpinner.succeed('Successfully copied files to widget directory!');
+    copyWidgetFilesSpinner.succeed(
+      'Successfully copied files to widget directory!'
+    );
   } else {
     copyWidgetFilesSpinner.color = 'red';
     copyWidgetFilesSpinner.fail(
@@ -83,7 +85,9 @@ const { REACT_CLIENT_API } = require('./cli/options');
     initWidgetSpinner.succeed('Successfully initialized widget!');
   } else {
     initWidgetSpinner.color = 'red';
-    initWidgetSpinner.fail('Oops! something went wrong while initializing widget files.');
+    initWidgetSpinner.fail(
+      'Oops! something went wrong while initializing widget files.'
+    );
     process.exit(0);
   }
 
@@ -91,7 +95,9 @@ const { REACT_CLIENT_API } = require('./cli/options');
   installDependenciesSpinner.start();
   if (installDependencies(cleanWidgetDirName)) {
     installDependenciesSpinner.color = 'green';
-    installDependenciesSpinner.succeed('Successfully installed widget dependencies!');
+    installDependenciesSpinner.succeed(
+      'Successfully installed widget dependencies!'
+    );
   } else {
     installDependenciesSpinner.color = 'red';
     installDependenciesSpinner.fail(

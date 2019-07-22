@@ -1,8 +1,9 @@
 const fs = require('fs-extra');
 const path = require('path');
 
-const defaultConfigPath = path.join(__dirname, '..', '..', 'project.config');
-const localConfigPath = `${defaultConfigPath}.local`;
+// file extension is mandatory
+const defaultConfigPath = path.join(__dirname, '..', '..', 'project.config.js');
+const localConfigPath = defaultConfigPath.replace('.js', '.local.js');
 
 const defaultConfig = require(defaultConfigPath); // eslint-disable-line import/no-dynamic-require
 
