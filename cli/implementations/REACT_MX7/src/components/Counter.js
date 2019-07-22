@@ -1,36 +1,33 @@
-import React from "react";
+import React from 'react'; // eslint-disable-line import/no-unresolved
 
 class Counter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {count: 0};
-    this.up = this.up.bind(this);
-    this.down = this.down.bind(this);
-  }
-  down() {
-    this.setState(state => ({count: state.count - 1}));
-  }
-  up() {
-    this.setState(state => ({count: state.count + 1}));
-  }
+  state = { count: 0 };
+
+  down = () => {
+    this.setState(state => ({ count: state.count - 1 }));
+  };
+
+  up = () => {
+    this.setState(state => ({ count: state.count + 1 }));
+  };
+
   render() {
+    const { count } = this.state;
+    const { style, dummyKey } = this.props;
+
     return (
-      <div className={`react-counter ${this.props.class}`} style={this.props.style}>
+      <div className="react-counter" style={style}>
         <div className="counter-header">
           <span>•••</span>
-          <h1>
-            {this.props.dummyKey}
-          </h1>
+          <h1>{dummyKey}</h1>
           <span>•••</span>
         </div>
-        <h1 className="counter-count">
-          {this.state.count}
-        </h1>
+        <h1 className="counter-count">{count}</h1>
         <div className="controls-wrapper">
-          <button className="counter-btn" onClick={this.down}>
+          <button type="button" className="counter-btn" onClick={this.down}>
             -
           </button>
-          <button className="counter-btn" onClick={this.up}>
+          <button type="button" className="counter-btn" onClick={this.up}>
             +
           </button>
         </div>

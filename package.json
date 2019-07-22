@@ -1,42 +1,42 @@
 {
-    "name": "create-mendix-widget",
-    "version": "0.1.0",
-    "description": "Create a working Mendix widget with one command.",
-    "main": "main.js",
-    "scripts": {
-        "start": "node ./main.js"
-    },
-    "bin": {
-        "create-mendix-widget": "./main.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/hm-mx/create-mendix-widget.git"
-    },
-    "keywords": [
-        "mendix",
-        "widget",
-        "javascript",
-        "react",
-        "ES6"
-    ],
-    "author": "Huang-Ming Chang <huang.ming.chang@mendix.com>",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/hm-mx/create-mendix-widget/issues"
-    },
-    "homepage": "https://github.com/hm-mx/create-mendix-widget#readme",
-    "dependencies": {
-        "boxen": "^2.1.0",
-        "cfonts": "^2.3.0",
-        "chalk": "^2.4.2",
-        "eslint": "^5.16.0",
-        "eslint-config-react-airbnb-prettier": "0.0.11",
-        "fs-extra": "^7.0.1",
-        "inquirer": "^6.2.1",
-        "ora": "^3.0.0",
-        "replace": "^1.1.0",
-        "shelljs": "^0.8.3"
-    },
-    "devDependencies": {}
+  "name": "create-mendix-widget",
+  "version": "0.1.0",
+  "description": "Create a working Mendix widget with one command.",
+  "main": "main.js",
+  "scripts": {
+    "start": "node ./main.js"
+  },
+  "bin": {
+    "create-mendix-widget": "./main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hm-mx/create-mendix-widget.git"
+  },
+  "keywords": [
+    "mendix",
+    "widget",
+    "javascript",
+    "react",
+    "ES6"
+  ],
+  "author": "Huang-Ming Chang <huang.ming.chang@mendix.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hm-mx/create-mendix-widget/issues"
+  },
+  "homepage": "https://github.com/hm-mx/create-mendix-widget#readme",
+  "dependencies": {
+    "boxen": "^2.1.0",
+    "cfonts": "^2.3.0",
+    "chalk": "^2.4.2",
+    "eslint": "^5.16.0",
+    "eslint-config-react-airbnb-prettier": "0.0.11",
+    "fs-extra": "^7.0.1",
+    "inquirer": "^6.2.1",
+    "ora": "^3.0.0",
+    "replace": "^1.1.0",
+    "shelljs": "^0.8.3"
+  },
+  "devDependencies": {}
 }

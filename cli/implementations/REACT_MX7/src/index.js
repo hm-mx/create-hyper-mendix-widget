@@ -1,11 +1,11 @@
-import React from "react";
-import Counter from "./components/Counter";
-import {parseStyle} from "./utils/parseStyle";
+import React from 'react'; // eslint-disable-line import/no-unresolved
 
-//import styles
-import "./style/style.scss";
+import Counter from './components/Counter';
+import parseStyle from './utils/parseStyle';
 
-export default props => {
-  const nextProps = {...props, style: parseStyle(props.style)};
+import './style/style.scss';
+
+export default ({ style, ...props }) => {
+  const nextProps = { ...props, style: parseStyle(style) };
   return <Counter {...nextProps} />;
 };

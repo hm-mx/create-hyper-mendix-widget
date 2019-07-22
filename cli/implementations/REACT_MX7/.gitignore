@@ -1,10 +1,12 @@
-.editorconfig
-*DS_Store*
-.vscode/
-*.bak
-
 node_modules/
-dist/
 build/
+dist/
+reports/
+coverage/
+yarn-error.log
 
-conf/coverage
+local.config.js
+
+test/*
+!test/widgets
+!test/TestHyperMxWidget.mpr

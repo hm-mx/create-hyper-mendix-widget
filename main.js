@@ -1,21 +1,23 @@
 #!/usr/bin/env node
 
 const inquirer = require('inquirer');
-const prompt = inquirer.createPromptModule();
 const Spinner = require('ora');
+
+const prompt = inquirer.createPromptModule();
 const questions = require('./cli/questions');
 const {
   makeWidgetDir,
   copyWidgetFiles,
   initWidget,
   installDependencies,
-  buildingInitialWidget
+  buildingInitialWidget,
 } = require('./cli/commands');
 const {
   sayHello,
   dirAlreadyExisted,
-  afterInstallMessage
+  afterInstallMessage,
 } = require('./cli/instructions');
+const { REACT_CLIENT_API } = require('./cli/options');
 
 (async () => {
   sayHello();
@@ -24,27 +26,27 @@ const {
 
   const makeWidgetDirSpinner = Spinner({
     text: 'Creating widget directory...',
-    color: 'blue'
+    color: 'blue',
   });
 
   const copyWidgetFilesSpinner = Spinner({
     text: 'Copying files to widget directory...',
-    color: 'blue'
+    color: 'blue',
   });
 
   const initWidgetSpinner = Spinner({
     text: 'Initializing widget...',
-    color: 'blue'
+    color: 'blue',
   });
 
   const installDependenciesSpinner = Spinner({
     text: 'Installing dependencies...',
-    color: 'blue'
+    color: 'blue',
   });
 
   const buildingInitialWidgetSpinner = Spinner({
     text: 'Building initial widget...',
-    color: 'blue'
+    color: 'blue',
   });
   // 1. create directory for the widget
   makeWidgetDirSpinner.start();
@@ -62,11 +64,10 @@ const {
 
   // 2. copy template files to widget dir
   copyWidgetFilesSpinner.start();
-  if (copyWidgetFiles(cleanWidgetDirName, answers.template)) {
+  const template = REACT_CLIENT_API;
+  if (copyWidgetFiles(cleanWidgetDirName, template)) {
     copyWidgetFilesSpinner.color = 'green';
-    copyWidgetFilesSpinner.succeed(
-      'Successfully copied files to widget directory!'
-    );
+    copyWidgetFilesSpinner.succeed('Successfully copied files to widget directory!');
   } else {
     copyWidgetFilesSpinner.color = 'red';
     copyWidgetFilesSpinner.fail(
@@ -82,9 +83,7 @@ const {
     initWidgetSpinner.succeed('Successfully initialized widget!');
   } else {
     initWidgetSpinner.color = 'red';
-    initWidgetSpinner.fail(
-      'Oops! something went wrong while initializing widget files.'
-    );
+    initWidgetSpinner.fail('Oops! something went wrong while initializing widget files.');
     process.exit(0);
   }
 
@@ -92,9 +91,7 @@ const {
   installDependenciesSpinner.start();
   if (installDependencies(cleanWidgetDirName)) {
     installDependenciesSpinner.color = 'green';
-    installDependenciesSpinner.succeed(
-      'Successfully installed widget dependencies!'
-    );
+    installDependenciesSpinner.succeed('Successfully installed widget dependencies!');
   } else {
     installDependenciesSpinner.color = 'red';
     installDependenciesSpinner.fail(
