@@ -5,7 +5,7 @@ module.exports = [
     type: 'input',
     name: 'widgetName',
     message: 'Widget Name:',
-    default: 'MyHyperMendixWidget',
+    default: 'MyAwesomeWidget',
     validate: input => {
       const validWidgetNameRegex = /^[0-9a-zA-Z_-]+$/;
       const isValid = validWidgetNameRegex.test(input.trim());
@@ -18,12 +18,12 @@ module.exports = [
     type: 'input',
     name: 'description',
     message: 'Widget description:',
-    default: 'My brand new hyper widget!',
+    default: 'My brand new widget!',
     validate: input => {
       const isValid = input.trim().length > 0 && input.trim().length <= 500;
       if (!isValid)
         console.log(
-          '\nPlease enter a valid widget description (no more than 500 characters)!'
+          '\nPlease enter a valid widget description (no more than 500 characters).'
         );
 
       return isValid;

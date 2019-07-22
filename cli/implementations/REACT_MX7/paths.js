@@ -1,5 +1,6 @@
 const path = require('path');
-const { mxProjectRootDir } = require('./local.config'); // eslint-disable-line import/no-unresolved
+
+const { mxProjectRootDir } = require('./src/utils/readConfig')();
 
 module.exports = {
   widgetRoot: __dirname,

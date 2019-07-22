@@ -6,7 +6,7 @@ const replace = require('replace');
 const IMPLEMENTATIONS = require('./implementations/IMPLEMENTATIONS');
 const { PLUGGABLE_WIDGET } = require('./options');
 
-const widgetCreatorModuleName = 'create-hyper-mendix-widget';
+const widgetCreatorModuleName = 'create-mendix-widget';
 
 function getWidgetCreatorModulePath() {
   const npmGlobalModulesRoot = shell

@@ -2,9 +2,9 @@
 
 Create Mendix Widget with one command.
 
--   [Requirement](#requirement)
--   [Create a Mendix widget](#create-a-mendix-widget)
--   [Available Scripts](#available-scripts)
+- [Requirement](#requirement)
+- [Create a Mendix widget](#create-a-mendix-widget)
+- [Available Scripts](#available-scripts)
 
 Create Mendix Widget works on macOS, Windows, and Linux.
 If something doesn’t work, please [file an issue](https://github.com/hm-mx/create-mendix-widget/issues/new).

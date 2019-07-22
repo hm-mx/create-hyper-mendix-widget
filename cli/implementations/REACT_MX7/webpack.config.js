@@ -19,7 +19,7 @@ const {
   mxAppHost,
   mxAppPort,
   devServerPort,
-} = require('./local.config'); // eslint-disable-line import/no-unresolved
+} = require('./src/utils/readConfig')();
 
 /*
  * 'xml-webpack-plugin' & 'webpack-archive-plugin' causing some webpack deprecations warnigns.

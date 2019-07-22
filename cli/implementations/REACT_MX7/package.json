@@ -65,6 +65,7 @@
     "webpack": "^4.32.2",
     "webpack-archive-plugin": "^3.0.0",
     "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.7.2",
     "webpack-inject-plugin": "^1.5.2",
     "xml-webpack-plugin": "^0.0.2"
   },
