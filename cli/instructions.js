@@ -1,43 +1,63 @@
 const chalk = require('chalk');
-const package = require('../package.json');
-const warning = chalk.keyword('orange');
 const boxen = require('boxen');
 
-const emojiSupported = process.platform !== 'win32';
+const { version } = require('../package.json');
 
-
+const { keyword, magenta, bold, blue, yellowBright, white } = chalk;
+const warning = keyword('orange');
+const emoji = process.platform !== 'win32';
 
 module.exports = {
     sayHello() {
         console.log(
             `
-			${chalk.bold(`\n${emojiSupported?('🚀 🚀  ') : ''}Create Hyper Mendix Widget!`)}${chalk.magenta(` (v${package.version})`)}\n\n${chalk.blue(
-                '>> Interactive tool for generating Hyper Mendix Widgets!\n>> More info? Please visit: https://github.com/omnajjar/create-hyper-mendix-widget'
-            )}\n${chalk.yellowBright(
+            ${bold(
+                `${emoji ? '🚀 🚀 ' : ''}Create Mendix Widget ${magenta(`(v${version})`)}`
+            )}
+            ${blue(
+                `>> Interactive tool for generating Hyper Mendix Widgets!
+                 >> More info? Please visit: https://github.com/hm-mx/create-mendix-widget`
+            )}
+            ${yellowBright(
                 '>> Any Issue? Please report them at: https://github.com/omnajjar/create-hyper-mendix-widget/issues'
             )}
 			`
         );
     },
     afterInstallMessage(widgteDirName) {
-        console.log(`${chalk.bold(`\n${emojiSupported?('😎  '):''}Nice! we're ready to go! ${emojiSupported?('🛴'):''}`)}`);
+        console.log(
+            `${bold(
+                `
+                ${emoji ? '😎  ' : ''}Nice! we're ready to go! ${emoji ? '🛴' : ''}`
+            )}`
+        );
         console.log(
             boxen(
                 chalk.cyanBright(
-                    `\n${chalk.white('//Type in your cmd or terminal:')}\n\n$ cd ${widgteDirName}\n\n${chalk.white(
-                        '//For development (with source maps) run:'
-                    )}\n$ npm run dev\n\n${chalk.white(
+                    `
+                    ${white('//Type in your cmd or terminal:')}
+                    
+                    $ cd ${widgteDirName}
+                    
+                    ${white('//For development (with source maps) run:')}
+                    $ npm run dev
+                    
+                    ${white(
                         '//For production (minified & uglified, no source maps) run:'
-                    )}\n$ npm run build\n`
-                ), {
+                    )}
+                    $ npm run build\n`
+                ),
+                {
                     padding: 1,
                     margin: 0,
-                    borderStyle: 'round'
+                    borderStyle: 'round',
                 }
             )
         );
     },
     dirAlreadyExisted(dirName) {
-        console.log(warning(`It seems that there is already a folder with the name '${dirName}'.`));
-    }
+        console.log(
+            warning(`It seems that there is already a folder with the name '${dirName}'.`)
+        );
+    },
 };

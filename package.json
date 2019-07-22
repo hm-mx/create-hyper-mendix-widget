@@ -20,10 +20,7 @@
         "react",
         "ES6"
     ],
-    "author": "Osama Mohammad Najjar",
-    "contributors": [
-        "Huang-Ming Chang <huang.ming.chang@mendix.com>"
-    ],
+    "author": "Huang-Ming Chang <huang.ming.chang@mendix.com>",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/hm-mx/create-mendix-widget/issues"
@@ -32,11 +29,13 @@
     "dependencies": {
         "boxen": "^2.1.0",
         "cfonts": "^2.3.0",
-        "chalk": "^2.4.1",
+        "chalk": "^2.4.2",
+        "eslint": "^5.16.0",
+        "eslint-config-react-airbnb-prettier": "0.0.11",
         "fs-extra": "^7.0.1",
         "inquirer": "^6.2.1",
         "ora": "^3.0.0",
-        "replace": "^1.0.1",
+        "replace": "^1.1.0",
         "shelljs": "^0.8.3"
     },
     "devDependencies": {}
