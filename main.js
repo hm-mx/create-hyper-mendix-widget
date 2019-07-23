@@ -5,7 +5,7 @@ const path = require('path');
 const Spinner = require('ora');
 
 const prompt = inquirer.createPromptModule();
-const getQuestions = require('./cli/questions');
+const getQuestions = require('./cli/getQuestions');
 const {
   makeWidgetDir,
   copyWidgetFiles,
