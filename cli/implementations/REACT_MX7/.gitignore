@@ -5,7 +5,7 @@ reports/
 coverage/
 yarn-error.log
 
-project.config.local.js
+dev.config.local.js
 
 test/*
 !test/widgets
