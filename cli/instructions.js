@@ -3,7 +3,7 @@ const boxen = require('boxen');
 
 const { version } = require('../package.json');
 
-const { magenta, bold, blue, yellowBright, white } = chalk;
+const { magenta, bold, blue, yellowBright, white, cyanBright } = chalk;
 const warning = chalk.keyword('orange');
 const emoji = process.platform !== 'win32';
 
@@ -24,28 +24,34 @@ module.exports = {
     `
     );
   },
-  afterInstallMessage(widgteDirName) {
+  afterInstallMessage(widgteDirName, initInsideFolder = false) {
     console.log(
       `${bold(
         `
     ${emoji ? '😎  ' : ''}Nice! we're ready to go! ${emoji ? '🛴' : ''}`
       )}`
     );
+
+    const cdCommand = `
+    ${white('//Type in your cmd or terminal:')}                    
+    ${cyanBright(`$ cd ${widgteDirName}`)}`;
+
+    const devCommand = `
+    ${white('//For development (with source maps) run:')}
+    $ npm run dev`;
+
+    const buildCommand = `
+    ${white('//For production (minified & uglified, no source maps) run:')}
+    $ npm run build`;
+
     console.log(
       boxen(
-        chalk.cyanBright(
-          `
-${white('//Type in your cmd or terminal:')}
+        `
+      ${!initInsideFolder && cdCommand}
                     
-$ cd ${widgteDirName}
+      ${devCommand}
                     
-${white('//For development (with source maps) run:')}
-$ npm run dev
-                    
-${white('//For production (minified & uglified, no source maps) run:')}
-$ npm run build
-    `
-        ),
+      ${buildCommand}`,
         {
           padding: 1,
           margin: 0,
