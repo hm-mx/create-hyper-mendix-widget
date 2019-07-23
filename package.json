@@ -38,5 +38,10 @@
     "replace": "^1.1.0",
     "shelljs": "^0.8.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "stylelint": "^10.1.0",
+    "stylelint-config-prettier": "^5.2.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-scss": "^3.9.2"
+  }
 }

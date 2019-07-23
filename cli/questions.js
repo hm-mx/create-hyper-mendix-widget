@@ -9,7 +9,7 @@ module.exports = [
     /**
      * We use kebab case here because:
      * 1. it's npm package's convention
-     * 2. we can easily get friendly name
+     * 2. we can easily get the friendly name
      */
     validate: input => {
       const validWidgetNameRegex = /^[0-9a-zA-Z_-]+$/;
@@ -23,7 +23,7 @@ module.exports = [
     type: 'input',
     name: 'description',
     message: 'Widget description:',
-    default: 'My brand new widget!',
+    default: 'My awesome widget!',
     validate: input => {
       const isValid = input.trim().length > 0 && input.trim().length <= 500;
       if (!isValid)

@@ -61,78 +61,48 @@ function copyWidgetFiles(dirName, selectedImplementation) {
   return false;
 }
 
+function tokenizeAndCapitalize(string, delimiter = '-') {
+  return string
+    .split(delimiter)
+    .map(chunk => chunk.charAt(0).toUpperCase() + chunk.slice(1));
+}
+
 function initWidget({
-  packageName, // kebab case
+  packageName, // my-awesome-widget
   description,
   author,
   email,
   initialVersion,
   license,
 }) {
-  const widgetNameInCamelCase = packageName
-    .split('-')
-    .map(chunk => chunk.charAt(0).toUpperCase() + chunk.slice(1))
-    .join('');
+  const tokenized = tokenizeAndCapitalize(packageName);
+  const widgetNameInCamelCase = tokenized.join('');
+  const widgetFriendlyName = tokenized.join(' ');
 
-  const widgetFriendlyName = packageName.replace(/-/gi, ' ');
+  const replacePackageJsonContent = (
+    regex,
+    replacement,
+    paths = [packageName]
+  ) => {
+    replace({
+      regex,
+      replacement,
+      paths,
+      recursive: true,
+      silent: true,
+    });
+  };
 
   try {
-    replace({
-      regex: '<<packageName>>',
-      replacement: packageName,
-      paths: [packageName],
-      recursive: true,
-      silent: true,
-    });
-    replace({
-      regex: '<<widgetName>>',
-      replacement: widgetNameInCamelCase,
-      paths: [packageName],
-      recursive: true,
-      silent: true,
-    });
-    replace({
-      regex: '<<widgetFriendlyName>>',
-      replacement: widgetFriendlyName,
-      paths: [packageName],
-      recursive: true,
-      silent: true,
-    });
-    replace({
-      regex: '<<widgetDescription>>',
-      replacement: description,
-      paths: [packageName],
-      recursive: true,
-      silent: true,
-    });
-    replace({
-      regex: '<<version>>',
-      replacement: initialVersion,
-      paths: [packageName],
-      recursive: true,
-      silent: true,
-    });
-    replace({
-      regex: '<<authorName>>',
-      replacement: author,
-      paths: [packageName],
-      recursive: true,
-      silent: true,
-    });
-    replace({
-      regex: '<<authorEmail>>',
-      replacement: email,
-      paths: [packageName],
-      recursive: true,
-      silent: true,
-    });
-    replace({
-      regex: '<<license>>',
-      replacement: license,
-      paths: [packageName],
-      recursive: true,
-      silent: true,
-    });
+    replacePackageJsonContent(/<<packageName>>/, packageName);
+    replacePackageJsonContent(/<<widgetName>>/, widgetNameInCamelCase);
+    replacePackageJsonContent(/<<widgetFriendlyName>>/, widgetFriendlyName);
+    replacePackageJsonContent(/<<widgetDescription>>/, description);
+    replacePackageJsonContent(/<<version>>/, initialVersion);
+    replacePackageJsonContent(/<<authorName>>/, author);
+    replacePackageJsonContent(/<<authorEmail>>/, email);
+    replacePackageJsonContent(/<<license>>/, license);
+
     return true;
   } catch (error) {
     return false;
