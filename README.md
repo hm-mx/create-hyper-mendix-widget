@@ -20,8 +20,8 @@ NOTE: if your Mendix is lower than 7.13.1 and you really want to build widgets i
 
 ## Requirements
 
-NodeJS
-Mendix version 7.13.1 or higher.
+- NodeJS
+- Mendix version 7.13.1 or higher.
 
 ## Create A Mendix Widget
 
@@ -31,13 +31,10 @@ npx create-mendix-widget awesome-widget
 
 ```
 
-During the process, you will be prompt with several questions, such as the path to your Mendix project. After it is done, navigate to the folder of your newly-created widget.
-
-To generate the `mpk` file, run the build script. Then the `mpk` file can be found in the `build` folder.
+You will be prompt with several questions to initialize your new widget. It will generate the boilerplate and install dependencies. Next, navigate to the folder of your newly-created widget and you are ready to build your new widget!
 
 ```bash
 cd awesome-widget
-npm run build
 ```
 
 ## Development Mode
@@ -56,7 +53,17 @@ module.exports = {
 
 You don't need to commit `dev.config.local.js` (it is git-ignored by default). This setup is to prevent exposing personal local configurations to the code base.
 
-Then you are ready to develop your widget. First, **run your Mendix app locally**, and then run the following command to spin up the dev server.
+Before you can try your new widget in Mendix Studio Pro, you need to build your widget with the following command:
+
+```bash
+npm run build
+```
+
+It will generate the `mpk` file and put it into your Mendix app (remember to configure this in `dev.config.local.js` first).
+
+After build is done, you should be able to find your new widget in your Mendix Studio Pro. Drag it into your app as you normally do. Then **run your Mendix app locally**.
+
+Finally, run the following command to spin up the dev server. It will automatically open your browser and go to [http://localhost:3000](http://localhost:3000) (or if you configure it differently in your `dev.config.local.js`).
 
 ```bash
 
@@ -64,7 +71,7 @@ npm run dev
 
 ```
 
-To enable debugging, any changes you made in dev mode will trigger an unoptimized build with source maps, and your browser will automatically reload your app on the host and port specified in your `dev.config.local.js` (default: [http://localhost:3000](http://localhost:3000)).
+This command will watch any changes you make, and trigger an unoptimized build with source maps. Your browser will automatically reload your app (However, HMR is not yet supported). Then you can see your widget in action.
 
 ## Build
 
