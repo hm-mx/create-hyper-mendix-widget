@@ -82,7 +82,11 @@ const start = async () => {
   // 2. copy template files to widget dir
   copyWidgetFilesSpinner.start();
   const template = REACT_CLIENT_API;
-  if (copyWidgetFiles(packageName, template)) {
+  const isDoneCopying = copyWidgetFiles(
+    initInsideFolder ? '.' : packageName,
+    template
+  );
+  if (isDoneCopying) {
     copyWidgetFilesSpinner.color = 'green';
     copyWidgetFilesSpinner.succeed(
       'Successfully copied files to widget directory!'
@@ -97,7 +101,9 @@ const start = async () => {
 
   // 3. Initializing widget files & replacing tokens
   initWidgetSpinner.start();
-  const initProps = hasPackageName ? { packageName, ...answers } : answers;
+  const initProps = hasPackageName
+    ? { packageName, ...answers, initInsideFolder }
+    : { ...answers, initInsideFolder };
 
   if (initWidget(initProps)) {
     initWidgetSpinner.color = 'green';

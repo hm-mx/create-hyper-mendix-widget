@@ -33,27 +33,27 @@ module.exports = {
     );
 
     const cdCommand = `
+
     ${white('//Type in your cmd or terminal:')}                    
-    ${cyanBright(`$ cd ${widgteDirName}`)}`;
+    ${cyanBright(`$ cd ${widgteDirName}`)}
+    `;
 
     const devCommand = `
     ${white('//For development (with source maps) run:')}
-    $ npm run dev`;
+    ${cyanBright(`$ npm run dev`)}`;
 
     const buildCommand = `
     ${white('//For production (minified & uglified, no source maps) run:')}
-    $ npm run build`;
+    ${cyanBright(`$ npm run build`)}`;
 
     console.log(
       boxen(
-        `
-      ${!initInsideFolder && cdCommand}
-                    
+        `${!initInsideFolder ? cdCommand : ''}
       ${devCommand}
                     
       ${buildCommand}`,
         {
-          padding: 1,
+          padding: { top: 1, left: 1, right: 2, bottom: 2 },
           margin: 0,
           borderStyle: 'round',
         }

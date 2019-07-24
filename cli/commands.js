@@ -74,20 +74,17 @@ function initWidget({
   email,
   initialVersion,
   license,
+  initInsideFolder,
 }) {
   const tokenized = tokenizeAndCapitalize(packageName);
   const widgetNameInCamelCase = tokenized.join('');
   const widgetFriendlyName = tokenized.join(' ');
 
-  const replacePackageJsonContent = (
-    regex,
-    replacement,
-    paths = [packageName]
-  ) => {
+  const replacePackageJsonContent = (regex, replacement) => {
     replace({
       regex,
       replacement,
-      paths,
+      paths: initInsideFolder ? ['.'] : [packageName],
       recursive: true,
       silent: true,
     });

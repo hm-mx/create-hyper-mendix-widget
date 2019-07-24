@@ -53,15 +53,13 @@ module.exports = {
 
 You don't need to commit `dev.config.local.js` (it is git-ignored by default). This setup is to prevent exposing personal local configurations to the code base.
 
-Before you can try your new widget in Mendix Studio Pro, you need to build your widget with the following command:
+After creating `dev.config.local.js`, you need to build your widget as follows:
 
 ```bash
 npm run build
 ```
 
-It will generate the `mpk` file and put it into your Mendix app (remember to configure this in `dev.config.local.js` first).
-
-After build is done, you should be able to find your new widget in your Mendix Studio Pro. Drag it into your app as you normally do. Then **run your Mendix app locally**.
+It will generate the `mpk` file and put it into your Mendix app. If it builds successfully, you should be able to find your new widget in your Mendix Studio Pro. Drag it into your app as you normally do. Then **run your Mendix app locally**.
 
 Finally, run the following command to spin up the dev server. It will automatically open your browser and go to [http://localhost:3000](http://localhost:3000) (or if you configure it differently in your `dev.config.local.js`).
 
