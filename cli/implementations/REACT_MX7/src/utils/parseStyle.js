@@ -1,3 +1,8 @@
+function getProperty(pair) {
+  const name = pair[0].trim().replace(/(-.)/g, match => match[1].toUpperCase());
+  return { [name]: pair[1].trim() };
+}
+
 /**
  *  Parse the added styles to the widget via the 'style' field in the modeler.
  * @public
@@ -5,18 +10,16 @@
  * @param {string} style - styles as string
  * @return {Object} the resulted style object
  */
-export function parseStyle(style = '') {
+export default function parseStyle(style = '') {
   try {
     return style.split(';').reduce((styleObject, line) => {
       const pair = line.split(':');
-      if (pair.length === 2) {
-        const name = pair[0].trim().replace(/(-.)/g, match => match[1].toUpperCase());
-        styleObject[name] = pair[1].trim();
-      }
-      return styleObject;
+      return pair.length === 2
+        ? { ...styleObject, ...getProperty(pair) }
+        : styleObject;
     }, {});
   } catch (error) {
-    console.log('Failed to parse style', style, error);
+    console.log('Failed to parse style', style, error); // eslint-disable-line no-console
   }
   return {};
 }

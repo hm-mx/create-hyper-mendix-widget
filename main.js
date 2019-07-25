@@ -1,54 +1,73 @@
 #!/usr/bin/env node
 
 const inquirer = require('inquirer');
-const prompt = inquirer.createPromptModule();
+const path = require('path');
 const Spinner = require('ora');
-const questions = require('./cli/questions');
+
+const prompt = inquirer.createPromptModule();
+const getQuestions = require('./cli/getQuestions');
 const {
   makeWidgetDir,
   copyWidgetFiles,
   initWidget,
   installDependencies,
-  buildingInitialWidget
+  buildingInitialWidget,
 } = require('./cli/commands');
 const {
   sayHello,
   dirAlreadyExisted,
-  afterInstallMessage
+  afterInstallMessage,
 } = require('./cli/instructions');
+const { REACT_CLIENT_API } = require('./cli/options');
 
-(async () => {
+/**
+ * we follow npm convention here.
+ * packageName should always be kebab caes.
+ */
+
+const [, , ...args] = process.argv;
+
+const getPackageName = _arg => {
+  const arg = _arg.trim();
+  const isValid = arg === '.' || /^[0-9a-zA-Z_-]+$/.test(arg);
+  if (!isValid) {
+    console.warn('\nPlease enter a valid widget name');
+    process.exit(0);
+  }
+  /**
+   * Convert camel case to kebab case
+   * https://gist.github.com/nblackburn/875e6ff75bc8ce171c758bf75f304707
+   */
+  const packageName = arg
+    .replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2')
+    .replace(/^-*/, '')
+    .toLowerCase();
+
+  return packageName === '.' ? path.basename(process.cwd()) : packageName;
+};
+
+const getSpinner = (text, color = 'blue') => Spinner({ text, color });
+
+const start = async () => {
   sayHello();
+
+  const hasPackageName = args[0];
+  const initInsideFolder = args[0] && args[0].trim() === '.';
+  const questions = getQuestions(!hasPackageName);
   const answers = await prompt(questions);
-  const cleanWidgetDirName = answers.widgetName.trim();
+  const packageName = getPackageName(args[0]);
 
-  const makeWidgetDirSpinner = Spinner({
-    text: 'Creating widget directory...',
-    color: 'blue'
-  });
+  const makeWidgetDirSpinner = getSpinner('Creating widget directory...');
+  const copyWidgetFilesSpinner = getSpinner(
+    'Copying files to widget directory...'
+  );
+  const initWidgetSpinner = getSpinner('Initializing widget...');
+  const installDependenciesSpinner = getSpinner('Installing dependencies...');
+  const buildingInitialWidgetSpinner = getSpinner('Building initial widget...');
 
-  const copyWidgetFilesSpinner = Spinner({
-    text: 'Copying files to widget directory...',
-    color: 'blue'
-  });
-
-  const initWidgetSpinner = Spinner({
-    text: 'Initializing widget...',
-    color: 'blue'
-  });
-
-  const installDependenciesSpinner = Spinner({
-    text: 'Installing dependencies...',
-    color: 'blue'
-  });
-
-  const buildingInitialWidgetSpinner = Spinner({
-    text: 'Building initial widget...',
-    color: 'blue'
-  });
   // 1. create directory for the widget
   makeWidgetDirSpinner.start();
-  if (makeWidgetDir(cleanWidgetDirName)) {
+  if (makeWidgetDir(packageName)) {
     makeWidgetDirSpinner.color = 'green';
     makeWidgetDirSpinner.succeed('Successfully created widget directory!');
   } else {
@@ -56,13 +75,18 @@ const {
     makeWidgetDirSpinner.fail(
       'Oops! something went wrong while creating widget directory.'
     );
-    dirAlreadyExisted(cleanWidgetDirName);
+    dirAlreadyExisted(packageName);
     process.exit(0);
   }
 
   // 2. copy template files to widget dir
   copyWidgetFilesSpinner.start();
-  if (copyWidgetFiles(cleanWidgetDirName, answers.template)) {
+  const template = REACT_CLIENT_API;
+  const isDoneCopying = copyWidgetFiles(
+    initInsideFolder ? '.' : packageName,
+    template
+  );
+  if (isDoneCopying) {
     copyWidgetFilesSpinner.color = 'green';
     copyWidgetFilesSpinner.succeed(
       'Successfully copied files to widget directory!'
@@ -77,7 +101,11 @@ const {
 
   // 3. Initializing widget files & replacing tokens
   initWidgetSpinner.start();
-  if (initWidget(answers)) {
+  const initProps = hasPackageName
+    ? { packageName, ...answers, initInsideFolder }
+    : { ...answers, initInsideFolder };
+
+  if (initWidget(initProps)) {
     initWidgetSpinner.color = 'green';
     initWidgetSpinner.succeed('Successfully initialized widget!');
   } else {
@@ -90,7 +118,7 @@ const {
 
   // 4. installing widget dependencies
   installDependenciesSpinner.start();
-  if (installDependencies(cleanWidgetDirName)) {
+  if (installDependencies(packageName)) {
     installDependenciesSpinner.color = 'green';
     installDependenciesSpinner.succeed(
       'Successfully installed widget dependencies!'
@@ -116,5 +144,7 @@ const {
     process.exit(0);
   }
 
-  afterInstallMessage(cleanWidgetDirName);
-})();
+  afterInstallMessage(packageName, initInsideFolder);
+};
+
+start();

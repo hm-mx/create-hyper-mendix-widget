@@ -1,43 +1,70 @@
 const chalk = require('chalk');
-const package = require('../package.json');
-const warning = chalk.keyword('orange');
 const boxen = require('boxen');
 
-const emojiSupported = process.platform !== 'win32';
+const { version } = require('../package.json');
 
-
+const { magenta, bold, blue, yellowBright, white, cyanBright } = chalk;
+const warning = chalk.keyword('orange');
+const emoji = process.platform !== 'win32';
 
 module.exports = {
-    sayHello() {
-        console.log(
-            `
-			${chalk.bold(`\n${emojiSupported?('🚀 🚀  ') : ''}Create Hyper Mendix Widget!`)}${chalk.magenta(` (v${package.version})`)}\n\n${chalk.blue(
-                '>> Interactive tool for generating Hyper Mendix Widgets!\n>> More info? Please visit: https://github.com/omnajjar/create-hyper-mendix-widget'
-            )}\n${chalk.yellowBright(
-                '>> Any Issue? Please report them at: https://github.com/omnajjar/create-hyper-mendix-widget/issues'
-            )}
-			`
-        );
-    },
-    afterInstallMessage(widgteDirName) {
-        console.log(`${chalk.bold(`\n${emojiSupported?('😎  '):''}Nice! we're ready to go! ${emojiSupported?('🛴'):''}`)}`);
-        console.log(
-            boxen(
-                chalk.cyanBright(
-                    `\n${chalk.white('//Type in your cmd or terminal:')}\n\n$ cd ${widgteDirName}\n\n${chalk.white(
-                        '//For development (with source maps) run:'
-                    )}\n$ npm run dev\n\n${chalk.white(
-                        '//For production (minified & uglified, no source maps) run:'
-                    )}\n$ npm run build\n`
-                ), {
-                    padding: 1,
-                    margin: 0,
-                    borderStyle: 'round'
-                }
-            )
-        );
-    },
-    dirAlreadyExisted(dirName) {
-        console.log(warning(`It seems that there is already a folder with the name '${dirName}'.`));
-    }
+  sayHello() {
+    console.log(
+      `
+    ${bold(
+      `${emoji ? '🚀 🚀 ' : ''}Create Mendix Widget ${magenta(`(v${version})`)}`
+    )}
+    ${blue(
+      `>> Interactive tool for generating Mendix Widgets!
+    >> For more info, please visit: https://github.com/hm-mx/create-mendix-widget`
+    )}
+    ${yellowBright(
+      '>> Any Issue? Please report them at: https://github.com/hm-mx/create-mendix-widget/issues'
+    )}
+    `
+    );
+  },
+  afterInstallMessage(widgteDirName, initInsideFolder = false) {
+    console.log(
+      `${bold(
+        `
+    ${emoji ? '😎  ' : ''}Nice! we're ready to go! ${emoji ? '🛴' : ''}`
+      )}`
+    );
+
+    const cdCommand = `
+
+    ${white('//Type in your cmd or terminal:')}                    
+    ${cyanBright(`$ cd ${widgteDirName}`)}
+    `;
+
+    const devCommand = `
+    ${white('//For development (with source maps) run:')}
+    ${cyanBright(`$ npm run dev`)}`;
+
+    const buildCommand = `
+    ${white('//For production (minified & uglified, no source maps) run:')}
+    ${cyanBright(`$ npm run build`)}`;
+
+    console.log(
+      boxen(
+        `${!initInsideFolder ? cdCommand : ''}
+      ${devCommand}
+                    
+      ${buildCommand}`,
+        {
+          padding: { top: 1, left: 1, right: 2, bottom: 2 },
+          margin: 0,
+          borderStyle: 'round',
+        }
+      )
+    );
+  },
+  dirAlreadyExisted(dirName) {
+    console.log(
+      warning(
+        `It seems that there is already a folder with the name '${dirName}'.`
+      )
+    );
+  },
 };
