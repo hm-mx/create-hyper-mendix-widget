@@ -12,6 +12,7 @@ const {
   initWidget,
   installDependencies,
   buildingInitialWidget,
+  initGit,
 } = require('./cli/commands');
 const {
   sayHello,
@@ -57,96 +58,84 @@ const start = async () => {
   const answers = await prompt(questions);
   const packageName = getPackageName(args[0]);
 
-  const makeWidgetDirSpinner = getSpinner('Creating widget directory...');
-  const copyWidgetFilesSpinner = getSpinner(
-    'Copying files to widget directory...'
-  );
-  const initWidgetSpinner = getSpinner('Initializing widget...');
-  const installDependenciesSpinner = getSpinner('Installing dependencies...');
-  const buildingInitialWidgetSpinner = getSpinner('Building initial widget...');
+  const performTask = (
+    startMessage,
+    successMessage,
+    failureMessage,
+    task,
+    failureCallback
+  ) => {
+    const spinner = getSpinner(startMessage);
+    spinner.start();
+    const isDone = task();
+    if (isDone) {
+      spinner.color = 'green';
+      spinner.succeed(successMessage);
+    } else {
+      spinner.color = 'red';
+      spinner.fail(failureMessage);
+      if (failureCallback) failureCallback();
+      process.exit(0);
+    }
+  };
 
   // 1. create directory for the widget
-  makeWidgetDirSpinner.start();
-  const isCreated = makeWidgetDir(packageName);
-  if (isCreated) {
-    makeWidgetDirSpinner.color = 'green';
-    makeWidgetDirSpinner.succeed('Successfully created widget directory!');
-  } else {
-    makeWidgetDirSpinner.color = 'red';
-    makeWidgetDirSpinner.fail(
-      'Oops! something went wrong while creating widget directory.'
-    );
-    dirAlreadyExisted(packageName);
-    process.exit(0);
-  }
+  performTask(
+    'Creating widget directory...',
+    'Successfully created widget directory!',
+    'Oops! something went wrong while creating widget directory.',
+    () => makeWidgetDir(packageName),
+    () => dirAlreadyExisted(packageName)
+  );
 
   // 2. copy template files to widget dir
-  copyWidgetFilesSpinner.start();
-  const template = REACT_CLIENT_API;
-  const isDoneCopying = copyWidgetFiles(
-    initInsideFolder ? '.' : packageName,
-    template
+  performTask(
+    'Copying files to widget directory...',
+    'Successfully copied files to widget directory!',
+    'Oops! something went wrong while copying files to widget directory.',
+    () => {
+      const template = REACT_CLIENT_API;
+      return copyWidgetFiles(initInsideFolder ? '.' : packageName, template);
+    }
   );
-  if (isDoneCopying) {
-    copyWidgetFilesSpinner.color = 'green';
-    copyWidgetFilesSpinner.succeed(
-      'Successfully copied files to widget directory!'
-    );
-  } else {
-    copyWidgetFilesSpinner.color = 'red';
-    copyWidgetFilesSpinner.fail(
-      'Oops! something went wrong while copying files to widget directory.'
-    );
-    process.exit(0);
-  }
 
   // 3. Initializing widget files & replacing tokens
-  initWidgetSpinner.start();
-  const initProps = hasPackageName
-    ? { packageName, ...answers, initInsideFolder }
-    : { ...answers, initInsideFolder };
+  performTask(
+    'Initializing widget...',
+    'Successfully initialized widget!',
+    'Oops! something went wrong while initializing widget files.',
+    () => {
+      const initProps = hasPackageName
+        ? { packageName, ...answers, initInsideFolder }
+        : { ...answers, initInsideFolder };
 
-  const isInitialized = initWidget(initProps);
-  if (isInitialized) {
-    initWidgetSpinner.color = 'green';
-    initWidgetSpinner.succeed('Successfully initialized widget!');
-  } else {
-    initWidgetSpinner.color = 'red';
-    initWidgetSpinner.fail(
-      'Oops! something went wrong while initializing widget files.'
-    );
-    process.exit(0);
-  }
+      return initWidget(initProps);
+    }
+  );
 
   // 4. installing widget dependencies
-  installDependenciesSpinner.start();
-  const hasInstalledDependencies = installDependencies(packageName);
-  if (hasInstalledDependencies) {
-    installDependenciesSpinner.color = 'green';
-    installDependenciesSpinner.succeed(
-      'Successfully installed widget dependencies!'
-    );
-  } else {
-    installDependenciesSpinner.color = 'red';
-    installDependenciesSpinner.fail(
-      'Oops! something went wrong while installing widget dependencies.'
-    );
-    process.exit(0);
-  }
+  performTask(
+    'Installing dependencies...',
+    'Successfully installed widget dependencies!',
+    'Oops! something went wrong while installing widget dependencies.',
+    () => installDependencies(packageName)
+  );
 
   // 5. Building initial widget
-  buildingInitialWidgetSpinner.start();
-  const isBuildPass = buildingInitialWidget();
-  if (isBuildPass) {
-    buildingInitialWidgetSpinner.color = 'green';
-    buildingInitialWidgetSpinner.succeed('Successfully built widget!');
-  } else {
-    buildingInitialWidgetSpinner.color = 'red';
-    buildingInitialWidgetSpinner.fail(
-      'Oops! something went wrong while building widget.'
-    );
-    process.exit(0);
-  }
+  performTask(
+    'Building initial widget...',
+    'Successfully built widget!',
+    'Oops! something went wrong while building widget.',
+    buildingInitialWidget
+  );
+
+  // 6. Init version contral Git
+  performTask(
+    'Init Git...',
+    'Successfully initialized Git!',
+    'Oops! something went wrong while initializing Git.',
+    initGit
+  );
 
   afterInstallMessage(packageName, initInsideFolder);
 };
