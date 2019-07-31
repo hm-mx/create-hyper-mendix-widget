@@ -1,6 +1,6 @@
 const path = require('path');
 
-const { mxProjectRootDir } = require('./src/utils/readConfig')();
+const { mxProjectRootDir } = require('./readConfig')();
 
 module.exports = {
   widgetRoot: __dirname,

@@ -16,7 +16,7 @@ const {
   mxAppHost,
   mxAppPort,
   devServerPort,
-} = require('./src/utils/readConfig')();
+} = require('./readConfig')();
 
 /*
  * 'xml-webpack-plugin' & 'webpack-archive-plugin' causing some webpack deprecations warnigns.
