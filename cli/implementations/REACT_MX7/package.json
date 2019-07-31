@@ -60,7 +60,6 @@
     "pretty-quick": "^1.11.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-test-renderer": "^16.6.0",
     "sass-loader": "^7.1.0",
     "string-replace-loader": "^2.2.0",
     "stylelint": "^10.1.0",

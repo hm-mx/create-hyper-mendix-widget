@@ -2,10 +2,10 @@
 
 exports[`Counter Component Test Unit should render correctly 1`] = `
 <div
-  className="react-counter undefined"
+  class="react-counter"
 >
   <div
-    className="counter-header"
+    class="counter-header"
   >
     <span>
       •••
@@ -18,22 +18,22 @@ exports[`Counter Component Test Unit should render correctly 1`] = `
     </span>
   </div>
   <h1
-    className="counter-count"
+    class="counter-count"
   >
     0
   </h1>
   <div
-    className="controls-wrapper"
+    class="controls-wrapper"
   >
     <button
-      className="counter-btn"
-      onClick={[Function]}
+      class="counter-btn"
+      type="button"
     >
       -
     </button>
     <button
-      className="counter-btn"
-      onClick={[Function]}
+      class="counter-btn"
+      type="button"
     >
       +
     </button>
