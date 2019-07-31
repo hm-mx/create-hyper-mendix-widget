@@ -122,10 +122,20 @@ function buildingInitialWidget() {
     }).code === 0
   ); // success
 }
+
+function initGit() {
+  return (
+    shell.exec('git init', {
+      silent: true,
+    }).code === 0
+  ); // success
+}
+
 module.exports = {
   makeWidgetDir,
   copyWidgetFiles,
   initWidget,
   installDependencies,
   buildingInitialWidget,
+  initGit,
 };
