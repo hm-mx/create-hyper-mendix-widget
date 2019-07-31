@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 const webpack = require('webpack');
 const XMLPlugin = require('xml-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');

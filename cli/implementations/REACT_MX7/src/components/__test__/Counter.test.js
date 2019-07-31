@@ -1,5 +1,5 @@
-import React from 'react'; // eslint-disable-line import/no-unresolved
-import renderer from 'react-test-renderer'; // eslint-disable-line import/no-unresolved
+import React from 'react';
+import renderer from 'react-test-renderer';
 
 import Counter from '../Counter';
 

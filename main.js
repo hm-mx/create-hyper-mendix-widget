@@ -67,7 +67,8 @@ const start = async () => {
 
   // 1. create directory for the widget
   makeWidgetDirSpinner.start();
-  if (makeWidgetDir(packageName)) {
+  const isCreated = makeWidgetDir(packageName);
+  if (isCreated) {
     makeWidgetDirSpinner.color = 'green';
     makeWidgetDirSpinner.succeed('Successfully created widget directory!');
   } else {
@@ -105,7 +106,8 @@ const start = async () => {
     ? { packageName, ...answers, initInsideFolder }
     : { ...answers, initInsideFolder };
 
-  if (initWidget(initProps)) {
+  const isInitialized = initWidget(initProps);
+  if (isInitialized) {
     initWidgetSpinner.color = 'green';
     initWidgetSpinner.succeed('Successfully initialized widget!');
   } else {
@@ -118,7 +120,8 @@ const start = async () => {
 
   // 4. installing widget dependencies
   installDependenciesSpinner.start();
-  if (installDependencies(packageName)) {
+  const hasInstalledDependencies = installDependencies(packageName);
+  if (hasInstalledDependencies) {
     installDependenciesSpinner.color = 'green';
     installDependenciesSpinner.succeed(
       'Successfully installed widget dependencies!'
@@ -133,7 +136,8 @@ const start = async () => {
 
   // 5. Building initial widget
   buildingInitialWidgetSpinner.start();
-  if (buildingInitialWidget()) {
+  const isBuildPass = buildingInitialWidget();
+  if (isBuildPass) {
     buildingInitialWidgetSpinner.color = 'green';
     buildingInitialWidgetSpinner.succeed('Successfully built widget!');
   } else {

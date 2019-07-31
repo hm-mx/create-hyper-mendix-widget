@@ -1,4 +1,4 @@
-const React = require('react'); // eslint-disable-line import/no-unresolved
+const React = require('react');
 
 const paths = require('./paths');
 

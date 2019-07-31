@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line import/no-unresolved
+import React from 'react';
 
 import Counter from './components/Counter';
 import styleAsString from './style/style.scss';

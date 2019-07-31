@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line import/no-unresolved
+import React from 'react';
 
 class Counter extends React.Component {
   state = { count: 0 };

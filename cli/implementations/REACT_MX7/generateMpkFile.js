@@ -1,4 +1,4 @@
-const zip = require('bestzip'); // eslint-disable-line import/no-unresolved
+const zip = require('bestzip');
 const path = require('path');
 const fs = require('fs-extra');
 
