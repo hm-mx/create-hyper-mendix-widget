@@ -13,6 +13,7 @@ import styleAsString from './style/style.scss';
  *
  * It's better that `preview` is only a dumb component,
  * because the whole purpose of this file is to show "HOW IT LOOKS".
+ * Smart components might fail to render in some cases.
  *
  * To inject css for your `preview`, export another named function `getPreviewCss`
  * This function should return compiled css as string.
@@ -20,7 +21,7 @@ import styleAsString from './style/style.scss';
  * so we can just import our scss as string.
  */
 
-export const preview = () => <Counter />;
+export const preview = props => <Counter {...props} />;
 
 export function getPreviewCss() {
   return styleAsString;
