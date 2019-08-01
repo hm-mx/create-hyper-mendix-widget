@@ -1,6 +1,6 @@
-const autoprefixer = require('autoprefixer'); // eslint-disable-line import/no-unresolved
-const postcssClean = require('postcss-clean'); // eslint-disable-line import/no-unresolved
-const cssnano = require('cssnano'); // eslint-disable-line import/no-unresolved
+const autoprefixer = require('autoprefixer');
+const postcssClean = require('postcss-clean');
+const cssnano = require('cssnano');
 
 module.exports = {
   plugins: [
