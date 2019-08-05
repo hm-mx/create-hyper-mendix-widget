@@ -1,15 +1,16 @@
-const isDev = process.env.MODE === 'development';
+/**
+ * this babel.config.js is for Jest
+ * `webpack.dev.js` and `webpack.prod.js` have their own babel settings
+ */
 
-const presetENV = isDev
-  ? [
-      '@babel/preset-env',
-      {
-        targets: {
-          node: 'current',
-        },
-      },
-    ]
-  : '@babel/preset-env';
+const presetENV = [
+  '@babel/preset-env',
+  {
+    targets: {
+      node: 'current',
+    },
+  },
+];
 
 module.exports = {
   presets: [presetENV, '@babel/preset-react'],

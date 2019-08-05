@@ -1,19 +1,19 @@
 .react-counter {
-  background-color: rgba(0, 0, 0, 0.5);
-  border-bottom: 5px solid #0190b7;
-  font-family: 'Ubuntu', sans-serif;
-  margin-bottom: 15px;
+  background-color: white;
+  box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.75);
+  border-radius: 8px;
+  font-family: sans-serif;
+  width: 300px;
 
   .counter-header {
     padding: 10px;
     text-align: center;
 
     h1 {
-      color: #fff;
+      color: #999;
       display: inline;
-      font-size: 35px;
-      font-weight: bold;
-      margin: 0 10px;
+      font-size: 18px;
+      font-weight: 300;
       user-select: none;
     }
 
@@ -32,7 +32,6 @@
     font-weight: bold;
     text-align: center;
     color: #61dafb;
-    -webkit-text-stroke: 4px #fff;
   }
 
   .controls-wrapper {
