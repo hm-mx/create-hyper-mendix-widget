@@ -1,6 +1,8 @@
 import React from 'react';
 
 import Counter from './components/Counter';
+import parseStyle from './utils/parseStyle';
+
 import styleAsString from './style/style.scss';
 
 /**
@@ -21,7 +23,10 @@ import styleAsString from './style/style.scss';
  * so we can just import our scss as string.
  */
 
-export const preview = props => <Counter {...props} />;
+export const preview = ({ style, class: className, ...props }) => {
+  const nextProps = { ...props, className, style: parseStyle(style) };
+  return <Counter {...nextProps} />;
+};
 
 export function getPreviewCss() {
   return styleAsString;

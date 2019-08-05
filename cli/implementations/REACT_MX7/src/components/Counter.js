@@ -18,9 +18,7 @@ class Counter extends React.Component {
     return (
       <div className="react-counter" style={style}>
         <div className="counter-header">
-          <span>•••</span>
           <h1>{dummyKey}</h1>
-          <span>•••</span>
         </div>
         <h1 className="counter-count">{count}</h1>
         <div className="controls-wrapper">
