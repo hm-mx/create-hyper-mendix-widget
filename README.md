@@ -23,6 +23,8 @@ NOTE: if your Mendix is lower than 7.13.1 and you really want to build widgets i
 - NodeJS
 - Mendix version 7.13.1 or higher.
 
+NOTE: the current version of React in Mendix is 16.6.3, meaning that you cannot use [React hooks](https://reactjs.org/docs/hooks-intro.html) in your Mendix widgets just yet.
+
 ## Create A Mendix Widget
 
 ```bash
@@ -80,6 +82,16 @@ npm run build
 ```
 
 It will build an optimized (minified & uglified) version of your widget without source maps, and directly put it into your Mendix app.
+
+## Writing Your React Widget
+
+We try to align the environment settings of the widget as close as possible with the industry standard. You can develop the widget just like a normal React component. However, the current version of React in Mendix is 16.6.3, meaning that you cannot use [React hooks](https://reactjs.org/docs/hooks-intro.html) just yet.
+
+For testing, we use [jest](https://jestjs.io/) and [react-testing-library](https://github.com/testing-library/react-testing-library) by default. You need to configure it yourself if you want to use other testing libraries.
+
+## Future Updates
+
+We plan to support Typescript and [pluggable widgets](<(https://docs.mendix.com/howto/extensibility/pluggable-widgets)>) as well.
 
 ## Issues
 

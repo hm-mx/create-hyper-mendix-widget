@@ -1,6 +1,6 @@
 {
   "name": "create-mendix-widget",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Create a working Mendix widget with one command.",
   "main": "main.js",
   "scripts": {
@@ -31,7 +31,7 @@
     "cfonts": "^2.3.0",
     "chalk": "^2.4.2",
     "eslint": "^5.16.0",
-    "eslint-config-react-airbnb-prettier": "0.0.11",
+    "eslint-config-react-airbnb-prettier": "0.0.12",
     "fs-extra": "^7.0.1",
     "inquirer": "^6.2.1",
     "ora": "^3.0.0",
