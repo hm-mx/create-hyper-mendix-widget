@@ -130,31 +130,6 @@ const getWebpackConfig = () => {
             },
           ],
         },
-        {
-          test: /\.jsx?$/,
-          use: [
-            {
-              loader: 'string-replace-loader',
-              options: {
-                multiple: [
-                  {
-                    search: '__INVITE__API__',
-                    replace: '"https://invite-test.mendix.com/rest/invite/v1/"',
-                  },
-                  {
-                    search: '__APPBAR2__URL__',
-                    replace: '"https://home-test.mendix.com/mxid/appbar2"',
-                  },
-                  {
-                    search: '__APP__SWITCHER__SERVICE__URL__',
-                    replace:
-                      '"https://appswitcherservice-test.mendixcloud.com"',
-                  },
-                ],
-              },
-            },
-          ],
-        },
       ],
     },
     resolve: {
