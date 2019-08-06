@@ -55,8 +55,12 @@ const start = async () => {
   const hasPackageName = args[0];
   const initInsideFolder = args[0] && args[0].trim() === '.';
   const questions = getQuestions(!hasPackageName);
-  const answers = await prompt(questions);
-  const packageName = getPackageName(args[0]);
+  const { packageName: packageNameInAnswers, ...answers } = await prompt(
+    questions
+  );
+  const packageName = hasPackageName
+    ? getPackageName(args[0])
+    : packageNameInAnswers;
 
   const performTask = (
     startMessage,
@@ -105,10 +109,7 @@ const start = async () => {
     'Successfully initialized widget!',
     'Oops! something went wrong while initializing widget files.',
     () => {
-      const initProps = hasPackageName
-        ? { packageName, ...answers, initInsideFolder }
-        : { ...answers, initInsideFolder };
-
+      const initProps = { packageName, ...answers, initInsideFolder };
       return initWidget(initProps);
     }
   );
@@ -118,7 +119,7 @@ const start = async () => {
     'Installing dependencies...',
     'Successfully installed widget dependencies!',
     'Oops! something went wrong while installing widget dependencies.',
-    () => installDependencies(packageName)
+    () => installDependencies(initInsideFolder ? '.' : packageName)
   );
 
   // 5. Building initial widget
