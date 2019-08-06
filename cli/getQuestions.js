@@ -1,3 +1,5 @@
+'use strict';
+
 // const { PLUGGABLE_WIDGET, REACT_CLIENT_API } = require('./options');
 
 const packageNameQuestion = {
@@ -5,11 +7,13 @@ const packageNameQuestion = {
   name: 'packageName',
   message: 'Widget Name (using kebab case):',
   default: 'my-awesome-widget',
+
   /**
    * We use kebab case here because:
    * 1. it's npm package's convention
    * 2. we can easily get the friendly name
    */
+
   validate: input => {
     const validWidgetNameRegex = /^[0-9a-zA-Z_-]+$/;
     const isValid = validWidgetNameRegex.test(input.trim());
@@ -26,6 +30,7 @@ const otherQuestions = [
     default: 'My awesome widget!',
     validate: input => {
       const isValid = input.trim().length > 0 && input.trim().length <= 500;
+
       if (!isValid)
         console.log(
           '\nPlease enter a valid widget description (no more than 500 characters).'

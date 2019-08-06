@@ -80,7 +80,7 @@ function initWidget({
   const widgetNameInCamelCase = tokenized.join('');
   const widgetFriendlyName = tokenized.join(' ');
 
-  const replacePackageJsonContent = (regex, replacement) => {
+  function replacePackageJsonContent(regex, replacement) {
     replace({
       regex,
       replacement,
@@ -88,7 +88,7 @@ function initWidget({
       recursive: true,
       silent: true,
     });
-  };
+  }
 
   try {
     replacePackageJsonContent(/<<packageName>>/, packageName);
