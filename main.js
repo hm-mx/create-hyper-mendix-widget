@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const inquirer = require('inquirer');
 const path = require('path');
+const inquirer = require('inquirer');
 const Spinner = require('ora');
 
 const prompt = inquirer.createPromptModule();
@@ -99,7 +99,10 @@ const start = async () => {
     'Oops! something went wrong while copying files to widget directory.',
     () => {
       const template = REACT_CLIENT_API;
-      return copyWidgetFiles(initInsideFolder ? '.' : packageName, template);
+      const targetFolder = initInsideFolder
+        ? process.cwd()
+        : path.join(process.cwd(), packageName);
+      return copyWidgetFiles(targetFolder, template);
     }
   );
 

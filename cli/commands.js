@@ -47,7 +47,7 @@ function makeWidgetDir(dirName) {
   return !fs.existsSync(dirName) ? shell.mkdir(dirName).code === 0 : false;
 }
 
-function copyWidgetFiles(dirName, selectedImplementation) {
+function copyWidgetFiles(targetFolder, selectedImplementation) {
   const widgetCreatorModulePath = getWidgetCreatorModulePath();
   if (widgetCreatorModulePath) {
     fs.copySync(
@@ -57,7 +57,7 @@ function copyWidgetFiles(dirName, selectedImplementation) {
         'implementations',
         getImplementationName(selectedImplementation)
       ),
-      path.normalize(dirName)
+      targetFolder
     );
     return true;
   }
