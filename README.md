@@ -25,19 +25,32 @@ NOTE: if your Mendix is lower than 7.13.1 and you really want to build widgets i
 
 NOTE: the current version of React in Mendix is 16.6.3, meaning that you cannot use [React hooks](https://reactjs.org/docs/hooks-intro.html) in your Mendix widgets just yet.
 
-## Create A Mendix Widget
+## Installation
+
+First, Install `create-mendix-widget` globally.
 
 ```bash
-
-npx create-mendix-widget awesome-widget
-
+npm i -g create-mendix-widget
 ```
 
-You will be prompt with several questions to initialize your new widget. It will generate the boilerplate and install dependencies. Next, navigate to the folder of your newly-created widget and you are ready to build your new widget!
+## Usage
+
+Run the following command followed by the name of your new widget.
+
+```bash
+create-mendix-widget awesome-widget
+```
+
+If you have an existing folder
 
 ```bash
 cd awesome-widget
+create-mendix-widget .
 ```
+
+You will be prompt with several questions to initialize your new widget. It will generate the boilerplate and install dependencies.
+
+Next, follow the instruction to navigate to the folder of your newly-created widget and you are ready to build your new widget!
 
 ## Development Mode
 

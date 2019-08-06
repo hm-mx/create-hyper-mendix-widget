@@ -14,19 +14,23 @@ function getWidgetCreatorModulePath() {
       silent: true,
     })
     .stdout.trim();
+
   const npmLocalModulesRoot = shell
     .exec('npm root', {
       silent: true,
     })
     .stdout.trim();
+
   const widgetCreatorGlobalModulePath = path.join(
     npmGlobalModulesRoot,
     widgetCreatorModuleName
   );
+
   const widgetCreatorLocalModulePath = path.join(
     npmLocalModulesRoot,
     widgetCreatorModuleName
   );
+
   // if the creator module was installed locally then favor it on the globally installed module.
   if (fs.existsSync(widgetCreatorLocalModulePath)) {
     return widgetCreatorLocalModulePath;
@@ -43,7 +47,7 @@ function makeWidgetDir(dirName) {
   return !fs.existsSync(dirName) ? shell.mkdir(dirName).code === 0 : false;
 }
 
-function copyWidgetFiles(dirName, selectedImplementation) {
+function copyWidgetFiles(targetFolder, selectedImplementation) {
   const widgetCreatorModulePath = getWidgetCreatorModulePath();
   if (widgetCreatorModulePath) {
     fs.copySync(
@@ -53,7 +57,7 @@ function copyWidgetFiles(dirName, selectedImplementation) {
         'implementations',
         getImplementationName(selectedImplementation)
       ),
-      path.normalize(dirName)
+      targetFolder
     );
     return true;
   }
@@ -107,7 +111,7 @@ function initWidget({
 }
 
 function installDependencies(dirName) {
-  shell.cd(dirName);
+  shell.cd(path.join(process.cwd(), dirName));
   return (
     shell.exec('npm install', {
       silent: true,
@@ -124,9 +128,10 @@ function buildingInitialWidget() {
 }
 
 function initGit() {
+  shell.cd(process.cwd());
   return (
     shell.exec(
-      `git init && git add --all -- :!src/* && git commit -m "Init widget"`,
+      `git init && git add --all -- ':!src/*' && git commit -m "Init widget"`,
       {
         silent: true,
       }

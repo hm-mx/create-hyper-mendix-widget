@@ -1,5 +1,8 @@
 {
   "extends": ["eslint", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
   "rules": {
     "strict": "off",
     "require-jsdoc": "off",
@@ -8,6 +11,10 @@
     "no-console": "off",
     "curly": "off",
     "comma-dangle": ["warn", "only-multiline"],
-    "padding-line-between-statements": "off"
+    "padding-line-between-statements": "off",
+    "node/no-unsupported-features": "off",
+    "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
+    "no-process-exit": "off",
+    "new-cap": ["error", { "capIsNew": false }]
   }
 }
