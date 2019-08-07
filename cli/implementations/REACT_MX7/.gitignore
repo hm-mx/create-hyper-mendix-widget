@@ -6,7 +6,3 @@ coverage/
 yarn-error.log
 
 dev.config.local.js
-
-test/*
-!test/widgets
-!test/TestHyperMxWidget.mpr

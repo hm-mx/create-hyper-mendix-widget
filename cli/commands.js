@@ -43,11 +43,12 @@ function getImplementationName(selected) {
   return IMPLEMENTATIONS.REACT_MX7;
 }
 
-function makeWidgetDir(dirName) {
-  return !fs.existsSync(dirName) ? shell.mkdir(dirName).code === 0 : false;
+function makeWidgetDir(widgetFolder) {
+  const execution = shell.mkdir(widgetFolder);
+  return execution.code === 0;
 }
 
-function copyWidgetFiles(targetFolder, selectedImplementation) {
+async function copyWidgetFiles(targetFolder, selectedImplementation) {
   const widgetCreatorModulePath = getWidgetCreatorModulePath();
   if (widgetCreatorModulePath) {
     fs.copySync(
@@ -59,6 +60,7 @@ function copyWidgetFiles(targetFolder, selectedImplementation) {
       ),
       targetFolder
     );
+
     return true;
   }
 
@@ -110,33 +112,49 @@ function initWidget({
   }
 }
 
-function installDependencies(dirName) {
-  shell.cd(path.join(process.cwd(), dirName));
-  return (
-    shell.exec('npm install', {
-      silent: true,
-    }).code === 0
-  ); // success
+function installDependencies(widgetFolder) {
+  shell.cd(widgetFolder);
+  const execution = shell.exec('npm install', { silent: true });
+  return execution.code === 0; // success
 }
 
-function buildingInitialWidget() {
-  return (
-    shell.exec('npm run build', {
-      silent: true,
-    }).code === 0
-  ); // success
+function buildingInitialWidget(widgetFolder) {
+  shell.cd(widgetFolder);
+  const execution = shell.exec('npm run build', {
+    silent: true,
+  });
+  return execution.code === 0; // success
 }
 
-function initGit() {
-  shell.cd(process.cwd());
-  return (
-    shell.exec(
-      `git init && git add --all -- ':!src/*' && git commit -m "Init widget"`,
-      {
-        silent: true,
-      }
-    ).code === 0
-  ); // success
+async function createGitignore(widgetFolder) {
+  const gitignorePath = `${widgetFolder}/.gitignore`;
+  const gitignoreContent = `
+node_modules/
+build/
+dist/
+reports/
+coverage/
+yarn-error.log
+
+dev.config.local.js
+    `;
+  if (!fs.existsSync(gitignorePath)) {
+    console.log('creating .gitignore...');
+    await fs.writeFileSync(gitignorePath, gitignoreContent);
+  }
+}
+
+async function initGit(widgetFolder) {
+  shell.cd(widgetFolder);
+  shell.exec('git init');
+  await createGitignore(widgetFolder);
+  shell.cd(widgetFolder);
+  const execution = shell.exec(
+    'git add --all && git reset -- src/* && git commit -m "Init widget"',
+    { silent: true }
+  );
+
+  return execution.code === 0; // success
 }
 
 module.exports = {
