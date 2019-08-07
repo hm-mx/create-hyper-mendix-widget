@@ -80,7 +80,7 @@ Finally, run the following command to spin up the dev server. It will automatica
 
 ```bash
 
-npm run dev
+npm run start
 
 ```
 
