@@ -71,14 +71,13 @@ const devServerConfigs = {
 
 const getWebpackConfig = () => {
   const libraryTarget = 'umd';
-  const entry = { [widgetName]: ['react-hot-loader/patch', paths.srcEntry] };
+  const entry = { [widgetName]: paths.srcEntry };
   const babelConfig = {
     presets: [
       ['@babel/preset-env', { modules: libraryTarget }],
       '@babel/preset-react',
     ],
     plugins: [
-      'react-hot-loader/babel',
       '@babel/plugin-transform-react-jsx',
       '@babel/plugin-proposal-object-rest-spread',
       '@babel/plugin-proposal-class-properties',
@@ -135,7 +134,6 @@ const getWebpackConfig = () => {
     resolve: {
       extensions: ['.js', '.jsx'],
       modules: ['node_modules'],
-      alias: { 'react-dom': '@hot-loader/react-dom' },
     },
     externals: ['react', 'react-dom'],
     plugins: [
