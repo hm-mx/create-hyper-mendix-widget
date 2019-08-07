@@ -3,9 +3,6 @@ const fs = require('fs-extra');
 const path = require('path');
 const replace = require('replace');
 
-const IMPLEMENTATIONS = require('./implementations/IMPLEMENTATIONS');
-const { PLUGGABLE_WIDGET } = require('./options');
-
 const widgetCreatorModuleName = 'create-mendix-widget';
 
 function getWidgetCreatorModulePath() {
@@ -38,17 +35,12 @@ function getWidgetCreatorModulePath() {
   return widgetCreatorGlobalModulePath;
 }
 
-function getImplementationName(selected) {
-  if (selected === PLUGGABLE_WIDGET) return IMPLEMENTATIONS.REACT_MX8;
-  return IMPLEMENTATIONS.REACT_MX7;
-}
-
 function makeWidgetDir(widgetFolder) {
   const execution = shell.mkdir(widgetFolder);
   return execution.code === 0;
 }
 
-async function copyWidgetFiles(targetFolder, selectedImplementation) {
+async function copyWidgetFiles(targetFolder, implementation) {
   const widgetCreatorModulePath = getWidgetCreatorModulePath();
   if (widgetCreatorModulePath) {
     fs.copySync(
@@ -56,7 +48,7 @@ async function copyWidgetFiles(targetFolder, selectedImplementation) {
         widgetCreatorModulePath,
         'cli',
         'implementations',
-        getImplementationName(selectedImplementation)
+        implementation
       ),
       targetFolder
     );

@@ -20,7 +20,18 @@ const {
   dirAlreadyExisted,
   afterInstallMessage,
 } = require('./cli/instructions');
-const { REACT_CLIENT_API } = require('./cli/options');
+const {
+  REACT_MX7,
+  REACT_MX8,
+  JAVASCRIPT,
+  TYPESCRIPT,
+} = require('./cli/options');
+const {
+  REACT_MX7_JS,
+  REACT_MX7_TS,
+  REACT_MX8_JS,
+  REACT_MX8_TS,
+} = require('./cli/implementations/IMPLEMENTATIONS');
 
 /**
  * we follow npm convention here.
@@ -77,9 +88,12 @@ const start = async () => {
   const hasPackageName = args[0];
   const initInsideFolder = args[0] && args[0].trim() === '.';
   const questions = getQuestions(!hasPackageName);
-  const { packageName: packageNameInAnswers, ...answers } = await prompt(
-    questions
-  );
+  const {
+    packageName: packageNameInAnswers,
+    template = REACT_MX7,
+    language = JAVASCRIPT,
+    ...answers
+  } = await prompt(questions);
   const packageName = hasPackageName
     ? getPackageName(args[0])
     : packageNameInAnswers;
@@ -88,7 +102,7 @@ const start = async () => {
     ? path.join(process.cwd(), '..')
     : path.join(process.cwd(), packageName);
 
-  // 1. create directory for the widget
+  // create directory for the widget
   if (!initInsideFolder) {
     await performTask(
       'Creating widget directory...',
@@ -102,18 +116,27 @@ const start = async () => {
     );
   }
 
-  // 2. copy template files to widget dir
+  // copy template files to widget dir
   await performTask(
     'Copying files to widget directory...',
     'Successfully copied files to widget directory!',
     'Oops! something went wrong while copying files to widget directory.',
     () => {
-      const template = REACT_CLIENT_API;
-      return copyWidgetFiles(widgetFolder, template);
+      const getImplementation = () => {
+        if (template === REACT_MX7 && language === JAVASCRIPT)
+          return REACT_MX7_JS;
+        if (template === REACT_MX7 && language === TYPESCRIPT)
+          return REACT_MX7_TS;
+        if (template === REACT_MX8 && language === JAVASCRIPT)
+          return REACT_MX8_JS;
+        return REACT_MX8_TS;
+      };
+
+      return copyWidgetFiles(widgetFolder, getImplementation());
     }
   );
 
-  // 3. Initializing widget files & replacing tokens
+  // Initializing widget files & replacing tokens
   await performTask(
     'Initializing widget...',
     'Successfully initialized widget!',
@@ -124,7 +147,7 @@ const start = async () => {
     }
   );
 
-  // 4. Init version control Git
+  // Init version control Git
   await performTask(
     'Init Git...',
     'Successfully initialized Git!',
@@ -132,7 +155,7 @@ const start = async () => {
     () => initGit(widgetFolder)
   );
 
-  // 5. installing widget dependencies
+  // installing widget dependencies
   await performTask(
     'Installing dependencies...',
     'Successfully installed widget dependencies!',
@@ -140,7 +163,7 @@ const start = async () => {
     () => installDependencies(widgetFolder)
   );
 
-  // 6. Building initial widget
+  // Building initial widget
   await performTask(
     'Building initial widget...',
     'Successfully built widget!',

@@ -1,6 +1,11 @@
 'use strict';
 
-// const { PLUGGABLE_WIDGET, REACT_CLIENT_API } = require('./options');
+const {
+  // REACT_MX7,
+  // REACT_MX8,
+  JAVASCRIPT,
+  TYPESCRIPT,
+} = require('./options');
 
 const packageNameQuestion = {
   type: 'input',
@@ -23,6 +28,24 @@ const packageNameQuestion = {
   },
 };
 const otherQuestions = [
+  /**
+   * Only ask this quetion if we start to work in Mendix 8
+   */
+
+  // {
+  //     type: 'list',
+  //     name: 'template',
+  //     message: "Which implementation you'd like to use:",
+  //     choices: [REACT_MX8, REACT_MX7],
+  //     default: REACT_MX8,
+  // },
+  {
+    type: 'list',
+    name: 'language',
+    message: `Which language you'd like to develop in:`,
+    choices: [JAVASCRIPT, TYPESCRIPT],
+    default: TYPESCRIPT,
+  },
   {
     type: 'input',
     name: 'description',
@@ -89,17 +112,6 @@ const otherQuestions = [
       return isValid;
     },
   },
-  /**
-   * Only ask this quetion if we start to work in Mendix 8
-   */
-
-  // {
-  //     type: 'list',
-  //     name: 'template',
-  //     message: "Which implementation you'd like to use:",
-  //     choices: [PLUGGABLE_WIDGET, REACT_CLIENT_API],
-  //     default: REACT_CLIENT_API,
-  // },
 ];
 
 module.exports = (includingPackageName = false) =>
