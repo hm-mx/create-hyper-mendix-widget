@@ -10,7 +10,7 @@ import './style/style.scss';
  * You need to do some extra work to make them usable
  */
 
-export default hot(({ style, class: className, ...props }) => {
+export default ({ style, class: className, ...props }) => {
   const nextProps = { ...props, className, style: parseStyle(style) };
   return <Counter {...nextProps} />;
-});
+};
