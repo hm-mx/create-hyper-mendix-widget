@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const path = require('path');
+const fs = require('fs-extra');
 const inquirer = require('inquirer');
 const Spinner = require('ora');
 
@@ -49,6 +50,27 @@ const getPackageName = _arg => {
 
 const getSpinner = (text, color = 'blue') => Spinner({ text, color });
 
+const performTask = async (
+  startMessage,
+  successMessage,
+  failureMessage,
+  task,
+  failureCallback
+) => {
+  const spinner = getSpinner(startMessage);
+  spinner.start();
+  const isDone = await task();
+  if (isDone) {
+    spinner.color = 'green';
+    spinner.succeed(successMessage);
+  } else {
+    spinner.color = 'red';
+    spinner.fail(failureMessage);
+    if (failureCallback) failureCallback();
+    process.exit(0);
+  }
+};
+
 const start = async () => {
   sayHello();
 
@@ -62,52 +84,37 @@ const start = async () => {
     ? getPackageName(args[0])
     : packageNameInAnswers;
 
-  const performTask = (
-    startMessage,
-    successMessage,
-    failureMessage,
-    task,
-    failureCallback
-  ) => {
-    const spinner = getSpinner(startMessage);
-    spinner.start();
-    const isDone = task();
-    if (isDone) {
-      spinner.color = 'green';
-      spinner.succeed(successMessage);
-    } else {
-      spinner.color = 'red';
-      spinner.fail(failureMessage);
-      if (failureCallback) failureCallback();
-      process.exit(0);
-    }
-  };
+  const widgetFolder = initInsideFolder
+    ? path.join(process.cwd(), '..')
+    : path.join(process.cwd(), packageName);
 
   // 1. create directory for the widget
-  performTask(
-    'Creating widget directory...',
-    'Successfully created widget directory!',
-    'Oops! something went wrong while creating widget directory.',
-    () => makeWidgetDir(packageName),
-    () => dirAlreadyExisted(packageName)
-  );
+  if (!initInsideFolder) {
+    await performTask(
+      'Creating widget directory...',
+      'Successfully created widget directory!',
+      'Oops! something went wrong while creating widget directory.',
+      () => {
+        const alreadyExisted = fs.existsSync(widgetFolder);
+        return !alreadyExisted ? makeWidgetDir(widgetFolder) : false;
+      },
+      () => dirAlreadyExisted(packageName)
+    );
+  }
 
   // 2. copy template files to widget dir
-  performTask(
+  await performTask(
     'Copying files to widget directory...',
     'Successfully copied files to widget directory!',
     'Oops! something went wrong while copying files to widget directory.',
     () => {
       const template = REACT_CLIENT_API;
-      const targetFolder = initInsideFolder
-        ? process.cwd()
-        : path.join(process.cwd(), packageName);
-      return copyWidgetFiles(targetFolder, template);
+      return copyWidgetFiles(widgetFolder, template);
     }
   );
 
   // 3. Initializing widget files & replacing tokens
-  performTask(
+  await performTask(
     'Initializing widget...',
     'Successfully initialized widget!',
     'Oops! something went wrong while initializing widget files.',
@@ -117,28 +124,28 @@ const start = async () => {
     }
   );
 
-  // 4. installing widget dependencies
-  performTask(
-    'Installing dependencies...',
-    'Successfully installed widget dependencies!',
-    'Oops! something went wrong while installing widget dependencies.',
-    () => installDependencies(initInsideFolder ? '.' : packageName)
-  );
-
-  // 5. Building initial widget
-  performTask(
-    'Building initial widget...',
-    'Successfully built widget!',
-    'Oops! something went wrong while building widget.',
-    buildingInitialWidget
-  );
-
-  // 6. Init version contral Git
-  performTask(
+  // 4. Init version control Git
+  await performTask(
     'Init Git...',
     'Successfully initialized Git!',
     'Oops! something went wrong while initializing Git.',
-    initGit
+    () => initGit(widgetFolder)
+  );
+
+  // 5. installing widget dependencies
+  await performTask(
+    'Installing dependencies...',
+    'Successfully installed widget dependencies!',
+    'Oops! something went wrong while installing widget dependencies.',
+    () => installDependencies(widgetFolder)
+  );
+
+  // 6. Building initial widget
+  await performTask(
+    'Building initial widget...',
+    'Successfully built widget!',
+    'Oops! something went wrong while building widget.',
+    () => buildingInitialWidget(widgetFolder)
   );
 
   afterInstallMessage(packageName, initInsideFolder);
