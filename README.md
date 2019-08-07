@@ -2,9 +2,10 @@
 
 Create Mendix Widget with one command.
 
-- [Requirement](#requirement)
-- [Create a Mendix widget](#create-a-mendix-widget)
-- [Available Scripts](#available-scripts)
+- [Requirements](#requirements)
+- [Usage](#usage)
+- [Development](#development)
+- [Build](#build)
 
 Create Mendix Widget works on macOS, Windows, and Linux.
 If something doesn’t work, please [file an issue](https://github.com/hm-mx/create-mendix-widget/issues/new).
@@ -21,7 +22,8 @@ NOTE: if your Mendix is lower than 7.13.1 and you really want to build widgets i
 ## Requirements
 
 - NodeJS
-- Mendix version 7.13.1 or higher.
+- Mendix version 7.13.1 or higher
+- Git
 
 NOTE: the current version of React in Mendix is 16.6.3, meaning that you cannot use [React hooks](https://reactjs.org/docs/hooks-intro.html) in your Mendix widgets just yet.
 
@@ -52,7 +54,7 @@ You will be prompt with several questions to initialize your new widget. It will
 
 Next, follow the instruction to navigate to the folder of your newly-created widget and you are ready to build your new widget!
 
-## Development Mode
+## Development
 
 In the root folder of your widget, you can find `dev.config.js`. **DO NOT** change the content of this file. This file serves as a fallback, and it should be part of the code base.
 
