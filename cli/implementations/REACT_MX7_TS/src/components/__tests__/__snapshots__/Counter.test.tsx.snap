@@ -7,15 +7,9 @@ exports[`Counter Component Test Unit should render correctly 1`] = `
   <div
     class="counter-header"
   >
-    <span>
-      •••
-    </span>
     <h1>
       SOME_DUMMY_KEY
     </h1>
-    <span>
-      •••
-    </span>
   </div>
   <h1
     class="counter-count"

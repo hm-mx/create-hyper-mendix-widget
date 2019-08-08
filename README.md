@@ -10,12 +10,14 @@ Create Mendix Widget with one command.
 Create Mendix Widget works on macOS, Windows, and Linux.
 If something doesn’t work, please [file an issue](https://github.com/hm-mx/create-mendix-widget/issues/new).
 
+🎉 We also support Typescript now!
+
 ## Why
 
-Mendix is moving from Dojo to React very soon. From version 7.13.1 and above, you can already build widgets in React without Dojo. [Pluggable widget](<(https://docs.mendix.com/howto/extensibility/pluggable-widgets)>) is awesome, but it is only available on Mendix 8. Before you upgrade your Mendix app to version 8, you might already want to gradually migrate your widgets to React.
+Mendix is moving from Dojo to React very soon. From version 7.13.1 and above, you can already build widgets in React without Dojo. [Pluggable widget](https://docs.mendix.com/howto/extensibility/pluggable-widgets) is awesome, but it is only available on Mendix 8. Before you upgrade your Mendix app to version 8, you might already want to gradually migrate your widgets to React.
 
 From **version 7.13.1** or higher, you can already build widgets in React without Dojo.
-Yet you might need a tool to help you configure everything for you.
+Yet you might need a tool to help configure everything for you.
 
 NOTE: if your Mendix is lower than 7.13.1 and you really want to build widgets in React, consider using [create-hyper-mendix-widget](https://github.com/omnajjar/create-hyper-mendix-widget).
 
@@ -50,7 +52,7 @@ cd awesome-widget
 create-mendix-widget .
 ```
 
-You will be prompt with several questions to initialize your new widget. It will generate the boilerplate and install dependencies.
+You will be prompted with several questions to initialize your new widget. It will generate the boilerplate and install dependencies.
 
 Next, follow the instruction to navigate to the folder of your newly-created widget and you are ready to build your new widget!
 
@@ -106,7 +108,7 @@ For testing, we use [jest](https://jestjs.io/) and [react-testing-library](https
 
 ## Future Updates
 
-We plan to support Typescript and [pluggable widgets](<(https://docs.mendix.com/howto/extensibility/pluggable-widgets)>) as well.
+We plan to support [Pluggable widgets](https://docs.mendix.com/howto/extensibility/pluggable-widgets) as well.
 
 ## Issues
 
