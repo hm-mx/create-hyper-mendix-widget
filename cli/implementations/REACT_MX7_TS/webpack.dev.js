@@ -15,7 +15,7 @@ const {
 const { mxAppHost, mxAppPort, devServerPort } = require('./readConfig')();
 
 /*
- * 'xml-webpack-plugin' & 'webpack-archive-plugin' causing some webpack deprecations warnigns.
+ * 'xml-webpack-plugin' causing some webpack deprecations warnigns.
  * These warnings are safe to be ignored as we're in webpack 4, consider to periodically check if these
  * dependencies can be updated especially before going to webpack 5.
  * Uncomment the line below to be able to trace webpack deprecations.
@@ -71,14 +71,19 @@ const devServerConfigs = {
 
 const getWebpackConfig = () => {
   const libraryTarget = 'umd';
-  const entry = { [widgetName]: ['react-hot-loader/patch', paths.srcEntry] };
+  const entry = { [widgetName]: paths.srcEntry };
+  /**
+   * We cannot use a external babel.config.js
+   * because `@babel/preset-env > modules` is dynamic
+   * So we have to put this inside of this getWebpackConfig function
+   */
   const babelConfig = {
     presets: [
       ['@babel/preset-env', { modules: libraryTarget }],
+      '@babel/preset-typescript',
       '@babel/preset-react',
     ],
     plugins: [
-      'react-hot-loader/babel',
       '@babel/plugin-transform-react-jsx',
       '@babel/plugin-proposal-object-rest-spread',
       '@babel/plugin-proposal-class-properties',
@@ -98,6 +103,17 @@ const getWebpackConfig = () => {
     devServer: devServerConfigs,
     module: {
       rules: [
+        {
+          test: /\.tsx?$/,
+          use: [
+            {
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+              },
+            },
+          ],
+        },
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
@@ -133,9 +149,8 @@ const getWebpackConfig = () => {
       ],
     },
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: ['.ts', '.js', '.tsx', '.jsx', '.css', '.scss'],
       modules: ['node_modules'],
-      alias: { 'react-dom': '@hot-loader/react-dom' },
     },
     externals: ['react', 'react-dom'],
     plugins: [

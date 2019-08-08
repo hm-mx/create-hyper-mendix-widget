@@ -78,62 +78,6 @@ const getWebpackConfig = (mode = NORMAL) => {
     ],
   };
 
-  const commonRules = [
-    {
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader',
-        options: babelConfig,
-      },
-    },
-  ];
-
-  const rulesForPreviewOnly = [
-    {
-      test: /\.scss$/,
-      use: [
-        'css-loader',
-        {
-          loader: 'postcss-loader',
-          options: { config: { path: paths.confDir } },
-        },
-        { loader: 'sass-loader' },
-      ],
-    },
-  ];
-
-  const rulesForWidgetOnly = [
-    {
-      test: /\.(sa|sc|c)ss$/,
-      use: [
-        MiniCssExtractPlugin.loader,
-        'css-loader',
-        {
-          loader: 'postcss-loader',
-          options: { config: { path: paths.confDir } },
-        },
-        'sass-loader',
-      ],
-    },
-    {
-      test: /\.(gif|png|jpe?g|svg)$/i,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {
-            name: `[name].[ext]`,
-            outputPath: `${widgetUIDir}/images`,
-          },
-        },
-      ],
-    },
-  ];
-
-  const rules = isOnPreview
-    ? [...commonRules, ...rulesForPreviewOnly]
-    : [...commonRules, ...rulesForWidgetOnly];
-
   const plugins = [
     new CleanWebpackPlugin({
       cleanAfterEveryBuildPatterns: [
@@ -159,7 +103,42 @@ const getWebpackConfig = (mode = NORMAL) => {
       libraryTarget,
       publicPath: '/widgets/',
     },
-    module: { rules },
+    module: {
+      rules: [
+        {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: babelConfig,
+          },
+        },
+        {
+          test: /\.(sa|sc|c)ss$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader',
+            {
+              loader: 'postcss-loader',
+              options: { config: { path: paths.confDir } },
+            },
+            'sass-loader',
+          ],
+        },
+        {
+          test: /\.(gif|png|jpe?g|svg)$/i,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: `[name].[ext]`,
+                outputPath: `${widgetUIDir}/images`,
+              },
+            },
+          ],
+        },
+      ],
+    },
     resolve: {
       extensions: ['.js', '.jsx'],
       modules: ['node_modules'],
