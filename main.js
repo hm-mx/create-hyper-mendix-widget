@@ -4,6 +4,8 @@ const path = require('path');
 const fs = require('fs-extra');
 const inquirer = require('inquirer');
 const Spinner = require('ora');
+const chalk = require('chalk');
+const { yellowBright, cyanBright } = chalk;
 
 const prompt = inquirer.createPromptModule();
 const getQuestions = require('./cli/getQuestions');
@@ -42,21 +44,25 @@ const [, , ...args] = process.argv;
 
 const getPackageName = _arg => {
   const arg = _arg.trim();
-  const isValid = arg === '.' || /^[0-9a-zA-Z_-]+$/.test(arg);
+  const packageName = arg === '.' ? path.basename(process.cwd()) : arg;
+  const isValid = /^[a-z]+(-[0-9a-z]+)+$/.test(packageName);
+  const warning = chalk.keyword('orange');
+
   if (!isValid) {
-    console.warn('\nPlease enter a valid widget name');
+    const mpk = yellowBright('mpk');
+    const exampleName = cyanBright('my-awesome-widget');
+    const exampleMpk = cyanBright('MyAwesomeWidget.mpk');
+    console.warn(
+      warning(`
+    Please provide your widget name in kebab case, e.g. ${exampleName}
+    We will convert it into camel case when generating the ${mpk} file, e.g. ${exampleMpk}.
+    This is to adhere the npm naming convention and avoid unpredictable variations.
+    `)
+    );
     process.exit(0);
   }
-  /**
-   * Convert camel case to kebab case
-   * https://gist.github.com/nblackburn/875e6ff75bc8ce171c758bf75f304707
-   */
-  const packageName = arg
-    .replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1-$2')
-    .replace(/^-*/, '')
-    .toLowerCase();
 
-  return packageName === '.' ? path.basename(process.cwd()) : packageName;
+  return packageName;
 };
 
 const getSpinner = (text, color = 'blue') => Spinner({ text, color });
@@ -83,20 +89,20 @@ const performTask = async (
 };
 
 const start = async () => {
-  sayHello();
-
-  const hasPackageName = args[0];
+  const hasPackageName = !!args[0];
   const initInsideFolder = args[0] && args[0].trim() === '.';
   const questions = getQuestions(!hasPackageName);
+  const initialPackageName = hasPackageName && getPackageName(args[0]);
+
+  sayHello();
+
   const {
     packageName: packageNameInAnswers,
     template = REACT_MX7,
     language = JAVASCRIPT,
     ...answers
   } = await prompt(questions);
-  const packageName = hasPackageName
-    ? getPackageName(args[0])
-    : packageNameInAnswers;
+  const packageName = initialPackageName || packageNameInAnswers;
 
   const widgetFolder = initInsideFolder
     ? path.join(process.cwd(), '..')
