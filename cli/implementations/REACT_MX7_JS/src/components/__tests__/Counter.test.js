@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 
 import Counter from '../Counter';
 
-describe('Counter Component Test Unit', () => {
+describe('Counter Component', () => {
   it('should render correctly', () => {
     const props = { dummyKey: 'SOME_DUMMY_KEY' };
     const { container } = render(<Counter {...props} />);
