@@ -40,7 +40,7 @@ module.exports = {
 
     const devCommand = `
     ${white('//For development (with source maps) run:')}
-    ${cyanBright(`$ npm run dev`)}`;
+    ${cyanBright(`$ npm run start`)}`;
 
     const buildCommand = `
     ${white('//For production (minified & uglified, no source maps) run:')}
