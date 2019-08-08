@@ -105,7 +105,7 @@ const start = async () => {
   const packageName = initialPackageName || packageNameInAnswers;
 
   const widgetFolder = initInsideFolder
-    ? path.join(process.cwd(), '..')
+    ? process.cwd()
     : path.join(process.cwd(), packageName);
 
   // create directory for the widget
