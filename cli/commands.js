@@ -3,6 +3,8 @@ const fs = require('fs-extra');
 const path = require('path');
 const replace = require('replace');
 
+const { COMMON } = require('./implementations/IMPLEMENTATIONS');
+
 const widgetCreatorModuleName = 'create-mendix-widget';
 
 function getWidgetCreatorModulePath() {
@@ -43,15 +45,21 @@ function makeWidgetDir(widgetFolder) {
 async function copyWidgetFiles(targetFolder, implementation) {
   const widgetCreatorModulePath = getWidgetCreatorModulePath();
   if (widgetCreatorModulePath) {
-    fs.copySync(
-      path.join(
-        widgetCreatorModulePath,
-        'cli',
-        'implementations',
-        implementation
+    await Promise.all([
+      fs.copy(
+        path.join(widgetCreatorModulePath, 'cli', 'implementations', COMMON),
+        targetFolder
       ),
-      targetFolder
-    );
+      fs.copy(
+        path.join(
+          widgetCreatorModulePath,
+          'cli',
+          'implementations',
+          implementation
+        ),
+        targetFolder
+      ),
+    ]);
 
     return true;
   }
