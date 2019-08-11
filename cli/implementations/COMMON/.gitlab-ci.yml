@@ -7,20 +7,14 @@ stages:
 install:
     stage: install
     script:
-        - npm run install
+        - npm install
     artifacts:
         paths:
             - node_modules/
-    only:
-      - master
-      - development
 
 test:
     stage: test
     script:
         - npm run test
-    only:
-    - master
-    - development
 
 

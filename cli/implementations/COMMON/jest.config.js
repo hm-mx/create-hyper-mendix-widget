@@ -25,7 +25,12 @@ module.exports = {
       },
     ],
   ],
-  collectCoverageFrom: ['src/**/*.ts', 'src/**/*.tsx'],
+  collectCoverageFrom: [
+    'src/**/*.js',
+    'src/**/*.jsx',
+    'src/**/*.ts',
+    'src/**/*.tsx',
+  ],
   moduleNameMapper: {
     '\\.(css|less|sass|scss)$': '<rootDir>/__mocks__/styleMock.js',
     '\\.(gif|ttf|eot|svg)$': '<rootDir>/__mocks__/fileMock.js',
