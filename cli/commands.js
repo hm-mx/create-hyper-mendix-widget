@@ -1,3 +1,5 @@
+'use strict';
+
 const shell = require('shelljs');
 const fs = require('fs-extra');
 const path = require('path');
