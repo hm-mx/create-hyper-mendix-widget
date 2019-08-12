@@ -84,15 +84,15 @@ const getWebpackConfig = (mode = NORMAL) => {
       cleanAfterEveryBuildPatterns: [
         '**.*',
         `!${widgetName}.css`,
-        `!${widgetName}.webmodeler.css`,
         `!${widgetName}.js`,
         `!${widgetName}.webmodeler.js`,
       ],
     }),
-    new MiniCssExtractPlugin({ filename: `${widgetUIDir}/[name].css` }),
+    !isOnPreview &&
+      new MiniCssExtractPlugin({ filename: `${widgetUIDir}/[name].css` }),
     new XMLPlugin({ files: widgetXMLFiles }),
     new webpack.EnvironmentPlugin(['MODE']),
-  ];
+  ].filter(x => x);
 
   return {
     mode: 'production',
@@ -128,14 +128,14 @@ const getWebpackConfig = (mode = NORMAL) => {
         {
           test: /\.(sa|sc|c)ss$/,
           use: [
-            MiniCssExtractPlugin.loader,
+            !isOnPreview && MiniCssExtractPlugin.loader,
             'css-loader',
             {
               loader: 'postcss-loader',
               options: { config: { path: paths.confDir } },
             },
             'sass-loader',
-          ],
+          ].filter(x => x),
         },
         {
           test: /\.(gif|png|jpe?g|svg)$/i,
@@ -152,7 +152,7 @@ const getWebpackConfig = (mode = NORMAL) => {
       ],
     },
     resolve: {
-      extensions: ['.ts', '.js', '.tsx', '.jsx', '.css', '.scss'],
+      extensions: ['.ts', '.js', '.tsx', '.jsx'],
       modules: ['node_modules'],
     },
     externals: ['react', 'react-dom'],
