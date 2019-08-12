@@ -2,8 +2,7 @@
   "name": "<<packageName>>",
   "widgetName": "<<widgetName>>",
   "widgetFriendlyName": "<<widgetFriendlyName>>",
-  "version": "<<version>>",
-  "description": "<<widgetDescription>>",
+  "version": "0.1.0",
   "main": "index.js",
   "keywords": [
     "Mendix",
@@ -11,11 +10,6 @@
     "React",
     "Javascript"
   ],
-  "author": {
-    "name": "<<authorName>>",
-    "email": "<<authorEmail>>"
-  },
-  "license": " MIT",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.5.5",
