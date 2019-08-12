@@ -1,6 +1,6 @@
 {
   "name": "create-mendix-widget",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Create a working Mendix widget with one command.",
   "main": "main.js",
   "scripts": {
@@ -17,8 +17,9 @@
     "mendix",
     "widget",
     "javascript",
-    "react",
-    "ES6"
+    "typescript",
+    "toolchain",
+    "react"
   ],
   "author": "Huang-Ming Chang <huang.ming.chang@mendix.com>",
   "license": "MIT",

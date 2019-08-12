@@ -1,21 +1,21 @@
+'use strict';
+
 const shell = require('shelljs');
 const fs = require('fs-extra');
 const path = require('path');
 const replace = require('replace');
 
+const { COMMON } = require('./implementations/IMPLEMENTATIONS');
+
 const widgetCreatorModuleName = 'create-mendix-widget';
 
 function getWidgetCreatorModulePath() {
   const npmGlobalModulesRoot = shell
-    .exec('npm root -g', {
-      silent: true,
-    })
+    .exec('npm root -g', { silent: true })
     .stdout.trim();
 
   const npmLocalModulesRoot = shell
-    .exec('npm root', {
-      silent: true,
-    })
+    .exec('npm root', { silent: true })
     .stdout.trim();
 
   const widgetCreatorGlobalModulePath = path.join(
@@ -43,15 +43,21 @@ function makeWidgetDir(widgetFolder) {
 async function copyWidgetFiles(targetFolder, implementation) {
   const widgetCreatorModulePath = getWidgetCreatorModulePath();
   if (widgetCreatorModulePath) {
-    fs.copySync(
-      path.join(
-        widgetCreatorModulePath,
-        'cli',
-        'implementations',
-        implementation
+    await Promise.all([
+      fs.copy(
+        path.join(widgetCreatorModulePath, 'cli', 'implementations', COMMON),
+        targetFolder
       ),
-      targetFolder
-    );
+      fs.copy(
+        path.join(
+          widgetCreatorModulePath,
+          'cli',
+          'implementations',
+          implementation
+        ),
+        targetFolder
+      ),
+    ]);
 
     return true;
   }
@@ -67,11 +73,6 @@ function tokenizeAndCapitalize(string, delimiter = '-') {
 
 function initWidget({
   packageName, // my-awesome-widget
-  description,
-  author,
-  email,
-  initialVersion,
-  license,
   initInsideFolder,
 }) {
   const tokenized = tokenizeAndCapitalize(packageName);
@@ -92,11 +93,6 @@ function initWidget({
     replacePackageJsonContent(/<<packageName>>/, packageName);
     replacePackageJsonContent(/<<widgetName>>/, widgetNameInCamelCase);
     replacePackageJsonContent(/<<widgetFriendlyName>>/, widgetFriendlyName);
-    replacePackageJsonContent(/<<widgetDescription>>/, description);
-    replacePackageJsonContent(/<<version>>/, initialVersion);
-    replacePackageJsonContent(/<<authorName>>/, author);
-    replacePackageJsonContent(/<<authorEmail>>/, email);
-    replacePackageJsonContent(/<<license>>/, license);
 
     return true;
   } catch (error) {

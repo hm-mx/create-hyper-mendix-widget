@@ -2,20 +2,15 @@
   "name": "<<packageName>>",
   "widgetName": "<<widgetName>>",
   "widgetFriendlyName": "<<widgetFriendlyName>>",
-  "version": "<<version>>",
-  "description": "<<widgetDescription>>",
+  "version": "0.1.0",
   "main": "index.js",
   "keywords": [
     "Mendix",
     "widget",
     "React",
-    "Javascript"
+    "Javascript",
+    "Typescript"
   ],
-  "author": {
-    "name": "<<authorName>>",
-    "email": "<<authorEmail>>"
-  },
-  "license": " MIT",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -35,13 +30,11 @@
     "@types/node": "^12.6.9",
     "@types/node-sass": "^4.11.0",
     "@types/react": "^16.8.19",
-    "@types/react-modal": "^3.8.2",
     "autoprefixer": "^9.5.1",
     "babel": "^6.23.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.5",
-    "bestzip": "^2.1.4",
     "clean-webpack-plugin": "^2.0.1",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
@@ -56,7 +49,6 @@
     "jest-junit": "^6.4.0",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.12.0",
-    "opn-cli": "^4.1.0",
     "postcss-clean": "^1.1.0",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.18.2",

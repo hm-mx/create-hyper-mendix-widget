@@ -1,4 +1,5 @@
 module.exports = {
+  COMMON: 'COMMON',
   REACT_MX7_JS: 'REACT_MX7_JS',
   REACT_MX7_TS: 'REACT_MX7_TS',
   REACT_MX8_JS: 'REACT_MX8_JS',
