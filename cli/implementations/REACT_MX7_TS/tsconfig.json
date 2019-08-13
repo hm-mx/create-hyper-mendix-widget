@@ -5,7 +5,7 @@
     "module": "amd",
     "target": "es5",
     "lib": ["es6", "dom"],
-    "types": ["jest", "node"],
+    "types": ["jest", "node", "mendix-client"],
     "moduleResolution": "node",
     "declaration": false,
     "removeComments": true,

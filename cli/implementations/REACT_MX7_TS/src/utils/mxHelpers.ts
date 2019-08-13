@@ -7,15 +7,35 @@
  * We provide some examples here. You can implement your own Mendix Client API helpers.
  */
 
-declare global {
-  interface Window {
-    mx: {
-      data: any;
-    };
-  }
+interface MxDataActionParams {
+  actionname: string;
+  applyto?: string | undefined;
+  guids?: string[] | undefined;
+  xpath?: string | undefined;
+  constraints?: string | undefined;
+  sort?: [string, 'desc' | 'asc'][] | undefined;
+  gridid?: string | undefined;
 }
 
-function action(params: object) {
+interface MxDataGetParams {
+  guid: string;
+  noCache?: boolean | undefined;
+  count?: boolean | undefined;
+  path?: string | undefined;
+  filter?:
+    | {
+        id?: string | undefined;
+        attributes?: string[] | undefined;
+        offset?: number | undefined;
+        sort?: [string, 'desc' | 'asc'][] | undefined;
+        amount?: number | undefined;
+        distinct?: boolean | undefined;
+        references?: mx.ReferencesSpec | undefined;
+      }
+    | undefined;
+}
+
+function action(params: MxDataActionParams) {
   return new Promise((resolve, reject) => {
     window.mx.data.action({
       params,
@@ -25,7 +45,7 @@ function action(params: object) {
   });
 }
 
-function get(params: object) {
+function get(params: MxDataGetParams) {
   return new Promise((resolve, reject) => {
     window.mx.data.get({ ...params, callback: resolve, error: reject });
   });
