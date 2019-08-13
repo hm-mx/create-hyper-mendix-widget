@@ -1,6 +1,6 @@
 {
   "name": "create-mendix-widget",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Create a working Mendix widget with one command.",
   "main": "main.js",
   "scripts": {
@@ -42,6 +42,7 @@
     "eslint-config-eslint": "^5.0.1",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-node": "^6.0.1",
+    "mendix-client": "^7.15.7",
     "stylelint": "^10.1.0",
     "stylelint-config-prettier": "^5.2.0",
     "stylelint-config-standard": "^18.3.0",
