@@ -3,14 +3,31 @@ import React from 'react';
 interface CounterProps {
   style?: { [key: string]: string };
   dummyKey: string;
+  mxObject?: {
+    get: Function;
+    set: Function;
+    getGuid: Function;
+  };
 }
 
 interface CounterState {
   count: number;
+  isReady: boolean;
 }
 
 class Counter extends React.Component<CounterProps, CounterState> {
-  state = { count: 0 };
+  state = { count: 0, isReady: false };
+
+  /**
+   * in case your widget requires context
+   * i.e. needsEntityContext="true" in `widget.config.ejs`
+   */
+  componentDidUpdate() {
+    const { mxObject } = this.props;
+    if (mxObject) {
+      this.setState({ isReady: true });
+    }
+  }
 
   down = () => {
     this.setState(({ count }) => ({ count: count - 1 }));

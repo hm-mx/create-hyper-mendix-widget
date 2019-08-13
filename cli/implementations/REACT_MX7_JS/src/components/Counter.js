@@ -1,7 +1,18 @@
 import React from 'react';
 
 class Counter extends React.Component {
-  state = { count: 0 };
+  state = { count: 0, isReady: false };
+
+  /**
+   * in case your widget requires context
+   * i.e. needsEntityContext="true" in `widget.config.ejs`
+   */
+  componentDidUpdate() {
+    const { mxObject } = this.props;
+    if (mxObject) {
+      this.setState({ isReady: true });
+    }
+  }
 
   down = () => {
     this.setState(state => ({ count: state.count - 1 }));
