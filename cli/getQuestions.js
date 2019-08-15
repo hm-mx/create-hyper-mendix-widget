@@ -21,7 +21,7 @@ const packageNameQuestion = {
    */
 
   validate: input => {
-    const validWidgetNameRegex = /^[a-z]+([0-9a-z])*(-[a-z]+[0-9a-z]+)*$/;
+    const validWidgetNameRegex = /^[a-z]+([0-9a-z])*(-[0-9a-z]+)*$/;
     const isValid = validWidgetNameRegex.test(input.trim());
     if (!isValid) console.log('\nPlease enter a valid widget name!');
 

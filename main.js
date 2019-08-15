@@ -48,7 +48,7 @@ const [, , ...args] = process.argv;
 const getPackageName = _arg => {
   const arg = _arg.trim();
   const packageName = arg === '.' ? path.basename(process.cwd()) : arg;
-  const isValid = /^[a-z]+([0-9a-z])*(-[a-z]+[0-9a-z]+)*$/.test(packageName);
+  const isValid = /^[a-z]+([0-9a-z])*(-[0-9a-z]+)*$/.test(packageName);
   const isLongEnough = packageName.length > 3;
   const warning = chalk.keyword('orange');
 
