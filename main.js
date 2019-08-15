@@ -16,6 +16,7 @@ const {
   copyWidgetFiles,
   initWidget,
   installDependencies,
+  createLocalSettings,
   buildingInitialWidget,
   initGit,
 } = require('./cli/commands');
@@ -31,7 +32,6 @@ const {
   TYPESCRIPT,
 } = require('./cli/options');
 const {
-  COMMON,
   REACT_MX7_JS,
   REACT_MX7_TS,
   REACT_MX8_JS,
@@ -48,8 +48,16 @@ const [, , ...args] = process.argv;
 const getPackageName = _arg => {
   const arg = _arg.trim();
   const packageName = arg === '.' ? path.basename(process.cwd()) : arg;
-  const isValid = /^[a-z]+(-[0-9a-z]+)+$/.test(packageName);
+  const isValid = /^[a-z]+([0-9a-z])*(-[a-z]+[0-9a-z]+)*$/.test(packageName);
+  const isLongEnough = packageName.length > 3;
   const warning = chalk.keyword('orange');
+
+  if (!isLongEnough) {
+    console.warn(
+      warning(`\nWidget name should be longer than 3 charactors.\n`)
+    );
+    process.exit(0);
+  }
 
   if (!isValid) {
     const mpk = yellowBright('mpk');
@@ -103,6 +111,7 @@ const start = async () => {
     packageName: packageNameInAnswers,
     template = REACT_MX7,
     language = JAVASCRIPT,
+    mxProjectRootDir,
     ...answers
   } = await prompt(questions);
   const packageName = initialPackageName || packageNameInAnswers;
@@ -162,6 +171,14 @@ const start = async () => {
     'Successfully initialized Git!',
     'Oops! something went wrong while initializing Git.',
     () => initGit(widgetFolder)
+  );
+
+  // Create local settings
+  await performTask(
+    'Creating dev.config.local.js...',
+    'Successfully created dev.config.local.js!',
+    'Oops! something went wrong while creating dev.config.local.js.',
+    () => createLocalSettings(widgetFolder, mxProjectRootDir)
   );
 
   // installing widget dependencies
