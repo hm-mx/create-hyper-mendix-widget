@@ -12,5 +12,11 @@ import './style/style.scss';
 
 export default ({ style, class: className, ...props }) => {
   const nextProps = { ...props, className, style: parseStyle(style) };
+  /**
+   * in case your widget requires context
+   * i.e. needsEntityContext="true" in `widget.config.ejs`
+   * Do the following:
+   * `return !props.mxObject ? <div>Loading...</div> : <Counter {...nextProps} />;`
+   */
   return <Counter {...nextProps} />;
 };
