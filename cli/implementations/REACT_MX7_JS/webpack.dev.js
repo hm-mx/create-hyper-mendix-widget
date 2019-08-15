@@ -8,9 +8,10 @@ const paths = require('./paths');
 const {
   version,
   description,
+  organization: companyName,
+  scope,
   widgetName,
   widgetFriendlyName,
-  scope,
 } = require('./package.json');
 const { mxAppHost, mxAppPort, devServerPort } = require('./readConfig')();
 
@@ -24,16 +25,28 @@ const { mxAppHost, mxAppPort, devServerPort } = require('./readConfig')();
 process.traceDeprecation = true;
 process.noDeprecation = true;
 
-const widgetDir = `com/mendix/widget/custom`;
+const organization = companyName
+  .replace(/[&/\\#,+()$~%.'":*?<>{}_\s]/g, '')
+  .toLowerCase();
+
+// for widget id, suffix is '.', for filepath, suffix is '/'
+const scopeWithSuffix = suffix => (scope ? `${scope}${suffix}` : '');
+
+const widgetDir = `com/${organization}/${scopeWithSuffix('/')}widget/custom`;
 const widgetUIDir = `${widgetDir}/ui`;
 
-const sharedConfigs = { NAME: widgetName, VERSION: version, SCOPE: scope };
+const sharedConfigs = {
+  NAME: widgetName,
+  VERSION: version,
+  ORGANIZATION: organization,
+};
 const widgetXMLFiles = [
   {
     template: paths.widgetPackageXML,
     filename: `package.xml`,
     data: {
       ...sharedConfigs,
+      SCOPE: scopeWithSuffix('/'),
     },
   },
   {
@@ -41,6 +54,7 @@ const widgetXMLFiles = [
     filename: `${widgetName}.xml`,
     data: {
       ...sharedConfigs,
+      SCOPE: scopeWithSuffix('.'),
       FRIENDLY_NAME: widgetFriendlyName,
       WIDGET_DESC: description,
     },

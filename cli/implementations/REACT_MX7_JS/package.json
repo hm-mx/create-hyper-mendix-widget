@@ -1,5 +1,8 @@
 {
   "name": "<<packageName>>",
+  "description": "<<widgetDescription>>",
+  "organization": "<<organization>>",
+  "scope": "<<scope>>",
   "widgetName": "<<widgetName>>",
   "widgetFriendlyName": "<<widgetFriendlyName>>",
   "version": "0.1.0",

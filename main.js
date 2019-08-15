@@ -31,7 +31,6 @@ const {
   TYPESCRIPT,
 } = require('./cli/options');
 const {
-  COMMON,
   REACT_MX7_JS,
   REACT_MX7_TS,
   REACT_MX8_JS,

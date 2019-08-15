@@ -73,6 +73,9 @@ function tokenizeAndCapitalize(string, delimiter = '-') {
 
 function initWidget({
   packageName, // my-awesome-widget
+  description,
+  scope = '',
+  organization,
   initInsideFolder,
 }) {
   const tokenized = tokenizeAndCapitalize(packageName);
@@ -91,6 +94,9 @@ function initWidget({
 
   try {
     replacePackageJsonContent(/<<packageName>>/, packageName);
+    replacePackageJsonContent(/<<widgetDescription>>/, description);
+    replacePackageJsonContent(/<<organization>>/, organization);
+    replacePackageJsonContent(/<<scope>>/, scope);
     replacePackageJsonContent(/<<widgetName>>/, widgetNameInCamelCase);
     replacePackageJsonContent(/<<widgetFriendlyName>>/, widgetFriendlyName);
 
