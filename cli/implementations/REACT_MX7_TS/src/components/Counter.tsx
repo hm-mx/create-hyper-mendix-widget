@@ -12,20 +12,26 @@ interface CounterProps {
 
 interface CounterState {
   count: number;
-  isReady: boolean;
 }
 
 class Counter extends React.Component<CounterProps, CounterState> {
-  state = { count: 0, isReady: false };
+  state = { count: 0 };
 
   /**
    * in case your widget requires context
    * i.e. needsEntityContext="true" in `widget.config.ejs`
    */
+  componentDidMount() {
+    const { mxObject } = this.props;
+    if (mxObject) {
+      // Do something one time when component is rendered
+    }
+  }
+
   componentDidUpdate() {
     const { mxObject } = this.props;
     if (mxObject) {
-      this.setState({ isReady: true });
+      // Do something that will fire every time when context is changed
     }
   }
 
