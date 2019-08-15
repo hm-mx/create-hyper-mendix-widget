@@ -71,35 +71,35 @@ const questions = [
       return isValid;
     },
   },
-  {
-    type: 'input',
-    name: 'organization',
-    message: 'Organization:',
-    default: 'Mendix',
-    filter: input => input.trim(),
-    validate: input => {
-      const hasProperLength =
-        input.trim().length > 2 && input.trim().length < 20;
-      const isStartedWithAlphabet = /^[a-zA-Z]/.test(input);
-      if (!hasProperLength)
-        console.log(
-          '\nYour organization name is either too short or too long!'
-        );
-
-      if (!isStartedWithAlphabet)
-        console.log(
-          '\nYour organization name needs to start with an English Alphabet.'
-        );
-
-      return hasProperLength && isStartedWithAlphabet;
-    },
-  },
 
   /**
-   * Adding additional namespace to the widget id and file path
-   * will break the widget. We will wait for the fix.
+   * Change the id and the filepath will break the widget.
+   * So it has to follow `com.mendix.widget.custom.${WidgetName}`
    */
 
+  // {
+  //   type: 'input',
+  //   name: 'organization',
+  //   message: 'Organization:',
+  //   default: 'Mendix',
+  //   filter: input => input.trim(),
+  //   validate: input => {
+  //     const hasProperLength =
+  //       input.trim().length > 2 && input.trim().length < 20;
+  //     const isStartedWithAlphabet = /^[a-zA-Z]/.test(input);
+  //     if (!hasProperLength)
+  //       console.log(
+  //         '\nYour organization name is either too short or too long!'
+  //       );
+
+  //     if (!isStartedWithAlphabet)
+  //       console.log(
+  //         '\nYour organization name needs to start with an English Alphabet.'
+  //       );
+
+  //     return hasProperLength && isStartedWithAlphabet;
+  //   },
+  // },
   // {
   //   type: 'input',
   //   name: 'scope',

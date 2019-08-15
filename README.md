@@ -106,10 +106,6 @@ We try to align the environment settings of the widget as close as possible with
 
 For testing, we use [jest](https://jestjs.io/) and [react-testing-library](https://github.com/testing-library/react-testing-library) by default. You need to configure it yourself if you want to use other testing libraries.
 
-## Future Updates
-
-We plan to support [Pluggable widgets](https://docs.mendix.com/howto/extensibility/pluggable-widgets) as well.
-
 ## Issues
 
 If something doesn’t work, please [file an issue](https://github.com/hm-mx/create-mendix-widget/issues/new).

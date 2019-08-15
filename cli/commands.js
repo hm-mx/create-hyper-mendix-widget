@@ -75,7 +75,7 @@ function initWidget({
   packageName, // my-awesome-widget
   description,
   scope = '',
-  organization,
+  organization = 'mendix',
   initInsideFolder,
 }) {
   const tokenized = tokenizeAndCapitalize(packageName);
