@@ -161,8 +161,6 @@ const start = async () => {
     'Oops! something went wrong while initializing widget files.',
     () => {
       const initProps = { packageName, ...answers, initInsideFolder };
-      console.log(`🍕`);
-      console.log(answers.organization);
       return initWidget(initProps);
     }
   );
