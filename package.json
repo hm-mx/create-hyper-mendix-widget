@@ -1,6 +1,6 @@
 {
   "name": "create-mendix-widget",
-  "version": "0.3.4",
+  "version": "1.0.0",
   "description": "Create a working Mendix widget with one command.",
   "main": "main.js",
   "scripts": {
