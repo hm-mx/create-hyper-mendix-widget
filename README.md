@@ -24,7 +24,7 @@ NOTE: if your Mendix is lower than 7.13.1 and you really want to build widgets i
 ## Requirements
 
 - NodeJS
-- Mendix version 7.13.1 or higher
+- Mendix version 7.13.1 or above (also works on Mendix 8)
 - Git
 
 NOTE: the current version of React in Mendix is 16.6.3, meaning that you cannot use [React hooks](https://reactjs.org/docs/hooks-intro.html) in your Mendix widgets just yet.
