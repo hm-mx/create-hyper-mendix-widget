@@ -16,6 +16,7 @@ const {
   copyWidgetFiles,
   initWidget,
   installDependencies,
+  createLocalSettings,
   buildingInitialWidget,
   initGit,
 } = require('./cli/commands');
@@ -102,6 +103,7 @@ const start = async () => {
     packageName: packageNameInAnswers,
     template = REACT_MX7,
     language = JAVASCRIPT,
+    mxProjectRootDir,
     ...answers
   } = await prompt(questions);
   const packageName = initialPackageName || packageNameInAnswers;
@@ -161,6 +163,14 @@ const start = async () => {
     'Successfully initialized Git!',
     'Oops! something went wrong while initializing Git.',
     () => initGit(widgetFolder)
+  );
+
+  // Create local settings
+  await performTask(
+    'Creating dev.config.local.js...',
+    'Successfully created dev.config.local.js!',
+    'Oops! something went wrong while creating dev.config.local.js.',
+    () => createLocalSettings(widgetFolder, mxProjectRootDir)
   );
 
   // installing widget dependencies

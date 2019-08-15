@@ -112,6 +112,18 @@ function installDependencies(widgetFolder) {
   return execution.code === 0; // success
 }
 
+function createLocalSettings(widgetFolder, mxProjectRootDir) {
+  const devConfigLocalJsPath = `${widgetFolder}/dev.config.local.js`;
+  const devConfigLocalJsContent = `
+  module.exports = {
+    mxProjectRootDir: '${mxProjectRootDir}',
+  };`;
+
+  if (!fs.existsSync(devConfigLocalJsPath))
+    fs.writeFileSync(devConfigLocalJsPath, devConfigLocalJsContent);
+  return true;
+}
+
 function buildingInitialWidget(widgetFolder) {
   shell.cd(widgetFolder);
   const execution = shell.exec('npm run build', {
@@ -120,7 +132,7 @@ function buildingInitialWidget(widgetFolder) {
   return execution.code === 0; // success
 }
 
-async function createGitignore(widgetFolder) {
+function createGitignore(widgetFolder) {
   const gitignorePath = `${widgetFolder}/.gitignore`;
   const gitignoreContent = `
 node_modules/
@@ -134,14 +146,14 @@ dev.config.local.js
     `;
   if (!fs.existsSync(gitignorePath)) {
     console.log('creating .gitignore...');
-    await fs.writeFileSync(gitignorePath, gitignoreContent);
+    fs.writeFileSync(gitignorePath, gitignoreContent);
   }
 }
 
-async function initGit(widgetFolder) {
+function initGit(widgetFolder) {
   shell.cd(widgetFolder);
   shell.exec('git init');
-  await createGitignore(widgetFolder);
+  createGitignore(widgetFolder);
   shell.cd(widgetFolder);
   const execution = shell.exec(
     'git add --all && git reset -- src/* && git commit -m "Init widget"',
@@ -156,6 +168,7 @@ module.exports = {
   copyWidgetFiles,
   initWidget,
   installDependencies,
+  createLocalSettings,
   buildingInitialWidget,
   initGit,
 };

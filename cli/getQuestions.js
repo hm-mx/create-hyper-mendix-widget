@@ -29,6 +29,13 @@ const packageNameQuestion = {
   },
 };
 const questions = [
+  {
+    type: 'input',
+    name: 'mxProjectRootDir',
+    message: 'Path to your Mendix project:',
+    default: './dist/MendixTestProject',
+    filter: input => input.trim(),
+  },
   /**
    * Only ask this quetion if we add Pluggable Widget templates.
    */
