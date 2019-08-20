@@ -156,7 +156,7 @@ const getWebpackConfig = (mode = NORMAL) => {
       extensions: ['.js', '.jsx'],
       modules: ['node_modules'],
     },
-    externals: ['react', 'react-dom'],
+    externals: ['react'],
     plugins,
   };
 };
