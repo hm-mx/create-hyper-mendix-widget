@@ -167,7 +167,7 @@ const getWebpackConfig = () => {
       extensions: ['.ts', '.js', '.tsx', '.jsx', '.css', '.scss'],
       modules: ['node_modules'],
     },
-    externals: ['react', 'react-dom'],
+    externals: ['react'],
     plugins: [
       new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({ filename: `${widgetUIDir}/[name].css` }),
