@@ -12,15 +12,13 @@ If something doesn’t work, please [file an issue](https://github.com/hm-mx/cre
 
 ## Why
 
-Mendix is moving from Dojo to React very soon. From version 7.13.1 and above, you can already build widgets in React without Dojo. [Pluggable widget](https://docs.mendix.com/howto/extensibility/pluggable-widgets) is awesome, but it is only available on Mendix 8. Before you upgrade your Mendix app to version 8, you might already want to re-build your Dojo widgets in React as a PoC. Later you can easily migrate the PoC's to Pluggable Widgets for Mendix 8.
+This is a personal project developed for research purposes. _Use this widget creator at your own risk._
 
-From **version 7.13.1** or higher, Mendix has an _experimental_ API that allows you to use widgets in React without Dojo.
+Mendix is moving from Dojo to React very soon. From version 7.13.1 and above, you can already build widgets in React without Dojo. [Pluggable widget](https://docs.mendix.com/howto/extensibility/pluggable-widgets) is awesome, but it is only available on Mendix 8. From **version 7.13.1** or higher, Mendix has an _experimental_ API that allows you to use widgets in React without Dojo. Before you upgrade to Mendix 8, you might already want to rebuild your Dojo widgets in React as a PoC. Later you can easily migrate the PoC's to Pluggable Widgets for Mendix 8.
 
-## **[DISCLAMER]**
+## **[DISCLAIMER]**
 
-Mendix does not support the usage of React on version 7. This is a personal project developed for research purposes. It is using an experimental API that allows you to build PoC's for migrating your Dojo widgets.
-
-DONOT use the PoC's in your Mendix projects on production. _Use this creator at your own risk._
+Mendix does not provide support for widgets using this experimental API. DONOT use the PoC's in your Mendix projects on production.
 
 ## Requirements
 
