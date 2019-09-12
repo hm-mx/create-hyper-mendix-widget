@@ -1,20 +1,12 @@
 import React from 'react';
 
-interface CounterProps {
-  style?: { [key: string]: string };
-  dummyKey: string;
-  mxObject?: {
-    get: Function;
-    set: Function;
-    getGuid: Function;
-  };
-}
+import { CounterWidgetProps } from '../typings';
 
 interface CounterState {
   count: number;
 }
 
-class Counter extends React.Component<CounterProps, CounterState> {
+class Counter extends React.Component<CounterWidgetProps, CounterState> {
   state = { count: 0 };
 
   /**
@@ -28,12 +20,16 @@ class Counter extends React.Component<CounterProps, CounterState> {
     }
   }
 
-  componentDidUpdate() {
-    const { mxObject } = this.props;
-    if (mxObject) {
-      // Do something that will fire every time when context is changed
-    }
-  }
+  /**
+   * With DOJO wrapper, the root component always re-mount.
+   * Therefore, `componentDidUpdate` is not useful here.
+   */
+  // componentDidUpdate() {
+  //   const { mxObject } = this.props;
+  //   if (mxObject) {
+  //     // Do something that will fire every time when context is changed
+  //   }
+  // }
 
   down = () => {
     this.setState(({ count }) => ({ count: count - 1 }));

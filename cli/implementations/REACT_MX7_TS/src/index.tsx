@@ -1,29 +1,60 @@
+import declare from 'dojoBaseDeclare';
+import _widgetBase from 'MxWidgetBase';
 import React from 'react';
-
-import Counter from './components/Counter';
-import parseStyle from './utils/parseStyle';
+import ReactDOM from 'react-dom';
 
 import './style/style.scss';
 
+import { widgetName } from '../package.json';
+import Counter from './components/Counter';
+import { CounterWidgetProps } from './typings';
+import { getValue } from './utils/mxHelpers';
+import parseStyle from './utils/parseStyle';
+
 /**
- * `style` and `class` are default properties that are not defined in widget.config.ejs
- * You need to do some extra work to make them usable
+ * This is a DOJO wrapper
  */
 
-interface defaultProps {
-  style: string;
-  class: string;
-  dummyKey: string;
-  [key: string]: any;
-}
-
-export default ({ style, class: className, ...props }: defaultProps) => {
-  const nextProps = { ...props, className, style: parseStyle(style) };
-  /**
-   * in case your widget requires context
-   * i.e. needsEntityContext="true" in `widget.config.ejs`
-   * Do the following:
-   * `return !props.mxObject ? <div>Loading...</div> : <Counter {...nextProps} />;`
-   */
-  return <Counter {...nextProps} />;
-};
+export default declare(`${widgetName}.widget.${widgetName}`, [_widgetBase], {
+  constructor() {},
+  postCreate() {
+    console.debug(`${this.id} >> postCreate`);
+  },
+  update(mxObject: mendix.lib.MxObject, callback: () => void) {
+    console.debug(`${this.id} >> update`);
+    const { style: styleAsString, ...params } = this.params;
+    const style = parseStyle(styleAsString);
+    const props = { ...params, style, dummyKey: this.dummyKey, mxObject };
+    this.resetSubscriptions(mxObject);
+    this.render(props);
+    callback();
+  },
+  resetSubscriptions(mxObject: mendix.lib.MxObject) {
+    this.subscriptionHandles.forEach(window.mx.data.unsubscribe);
+    this.subscriptionHandles = [];
+    let self = this;
+    if (mxObject) {
+      const commonOptions = {
+        callback: function() {
+          // get the value from the context
+          const dummyKey = getValue(self.params.dummyKey, '', mxObject);
+          if (dummyKey !== self.dummyKey) {
+            // re-render if dummyKey is updated
+            self.render({ ...self.params, dummyKey: self.dummyKey, mxObject });
+          }
+        },
+        guid: mxObject.getGuid(),
+      };
+      self.subscriptionHandles = [
+        window.mx.data.subscribe(commonOptions), // do we need this line?
+        window.mx.data.subscribe({
+          attr: self.params.targetAttribute,
+          ...commonOptions,
+        }),
+      ];
+    }
+  },
+  render(props: CounterWidgetProps) {
+    ReactDOM.render(<Counter {...props} />, this.domNode);
+  },
+});

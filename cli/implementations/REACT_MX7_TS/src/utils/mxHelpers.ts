@@ -58,3 +58,14 @@ export const mxData = {
 
 export const getData = get;
 export const callMicroflow = (actionname: string) => action({ actionname });
+
+type AttributeValue = string | number | boolean;
+
+export const getValue = (
+  attribute: string,
+  defaultValue: AttributeValue,
+  mxObject?: mendix.lib.MxObject
+): AttributeValue =>
+  mxObject && attribute.trim()
+    ? mxObject.get(attribute) || defaultValue
+    : defaultValue;
