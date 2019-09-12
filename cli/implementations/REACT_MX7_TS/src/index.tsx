@@ -24,9 +24,8 @@ export default declare(`${widgetName}.widget.${widgetName}`, [_widgetBase], {
     console.debug(`${this.id} >> update`);
     const { style: styleAsString, ...params } = this.params;
     const style = parseStyle(styleAsString);
-    const props = { ...params, style, dummyKey: this.dummyKey, mxObject };
     this.resetSubscriptions(mxObject);
-    this.render(props);
+    this.render({ ...params, style, dummyKey: this.dummyKey, mxObject });
     callback();
   },
   resetSubscriptions(mxObject: mendix.lib.MxObject) {

@@ -14,12 +14,16 @@ class Counter extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    const { mxObject } = this.props;
-    if (mxObject) {
-      // Do something that will fire every time when context is changed
-    }
-  }
+  /**
+   * With DOJO wrapper, the root component always re-mount.
+   * Therefore, `componentDidUpdate` is not useful here.
+   */
+  // componentDidUpdate() {
+  //   const { mxObject } = this.props;
+  //   if (mxObject) {
+  //     // Do something that will fire every time when context is changed
+  //   }
+  // }
 
   down = () => {
     this.setState(state => ({ count: state.count - 1 }));

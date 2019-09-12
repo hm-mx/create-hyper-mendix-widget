@@ -1,22 +1,58 @@
+import declare from 'dojoBaseDeclare';
+import _widgetBase from 'MxWidgetBase';
 import React from 'react';
-
-import Counter from './components/Counter';
-import parseStyle from './utils/parseStyle';
+import ReactDOM from 'react-dom';
 
 import './style/style.scss';
 
+import { widgetName } from '../package.json';
+import Counter from './components/Counter';
+import { getValue } from './utils/mxHelpers';
+import parseStyle from './utils/parseStyle';
+
 /**
- * `style` and `class` are default properties that are not defined in widget.config.ejs
- * You need to do some extra work to make them usable
+ * This is a DOJO wrapper
  */
 
-export default ({ style, class: className, ...props }) => {
-  const nextProps = { ...props, className, style: parseStyle(style) };
-  /**
-   * in case your widget requires context
-   * i.e. needsEntityContext="true" in `widget.config.ejs`
-   * Do the following:
-   * `return !props.mxObject ? <div>Loading...</div> : <Counter {...nextProps} />;`
-   */
-  return <Counter {...nextProps} />;
-};
+export default declare(`${widgetName}.widget.${widgetName}`, [_widgetBase], {
+  constructor() {},
+  postCreate() {
+    console.debug(`${this.id} >> postCreate`);
+  },
+  update(mxObject, callback) {
+    console.debug(`${this.id} >> update`);
+    const { style: styleAsString, ...params } = this.params;
+    const style = parseStyle(styleAsString);
+    this.resetSubscriptions(mxObject);
+    this.render({ ...params, style, dummyKey: this.dummyKey, mxObject });
+    callback();
+  },
+  resetSubscriptions(mxObject) {
+    this.subscriptionHandles.forEach(window.mx.data.unsubscribe);
+    this.subscriptionHandles = [];
+    let self = this;
+    if (mxObject) {
+      const commonOptions = {
+        callback: function() {
+          // get the value from the context
+          const dummyKey = getValue(self.params.dummyKey, '', mxObject);
+          if (dummyKey !== self.dummyKey) {
+            // re-render if dummyKey is updated
+            self.render({ ...self.params, dummyKey: self.dummyKey, mxObject });
+          }
+        },
+        guid: mxObject.getGuid(),
+      };
+      self.subscriptionHandles = [
+        window.mx.data.subscribe(commonOptions), // do we need this line?
+        window.mx.data.subscribe({
+          attr: self.params.targetAttribute,
+          ...commonOptions,
+        }),
+      ];
+    }
+  },
+  render(props) {
+    ReactDOM.render(<Counter {...props} />, this.domNode);
+  },
+});

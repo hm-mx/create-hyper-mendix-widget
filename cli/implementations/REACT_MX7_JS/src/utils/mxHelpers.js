@@ -30,3 +30,8 @@ export const mxData = {
 
 export const getData = get;
 export const callMicroflow = actionname => action({ actionname });
+
+export const getValue = (attribute, defaultValue, mxObject) =>
+  mxObject && attribute.trim()
+    ? mxObject.get(attribute) || defaultValue
+    : defaultValue;
