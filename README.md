@@ -12,13 +12,13 @@ If something doesn’t work, please [file an issue](https://github.com/hm-mx/cre
 
 ## Why
 
-This is a personal project developed for research purposes. _Use this widget creator at your own risk._
+This project is not affiliated with Mendix. It is a personal project developed for research purposes. _Use this widget creator at your own risk._
 
 Mendix is moving from Dojo to React very soon. From version 7.13.1 and above, you can already build widgets in React without Dojo. [Pluggable widget](https://docs.mendix.com/howto/extensibility/pluggable-widgets) is awesome, but it is only available on Mendix 8. From **version 7.13.1** or higher, Mendix has an _experimental_ API that allows you to use widgets in React without Dojo. Before you upgrade to Mendix 8, you might already want to rebuild your Dojo widgets in React as a PoC. Later you can easily migrate the PoC's to Pluggable Widgets for Mendix 8.
 
 ## **[DISCLAIMER]**
 
-Mendix does not provide support for widgets using this experimental API. DONOT use the PoC's in your Mendix projects on production.
+This project is NOT affiliated with Mendix. Feel free to file issues to this github repo, but please DONOT file issues regarding this tool to Mendix support, or asking questions in Mendix Forum. 
 
 ## Requirements
 
