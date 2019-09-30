@@ -1,6 +1,6 @@
 {
   "name": "create-mendix-widget",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Create a working Mendix widget with one command.",
   "main": "main.js",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hm-mx/create-mendix-widget.git"
+    "url": "git+https://github.com/iannbing/create-mendix-widget.git"
   },
   "keywords": [
     "mendix",
@@ -24,9 +24,9 @@
   "author": "Huang-Ming Chang <huang.ming.chang@mendix.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hm-mx/create-mendix-widget/issues"
+    "url": "https://github.com/iannbing/create-mendix-widget/issues"
   },
-  "homepage": "https://github.com/hm-mx/create-mendix-widget#readme",
+  "homepage": "https://github.com/iannbing/create-mendix-widget#readme",
   "dependencies": {
     "boxen": "^2.1.0",
     "cfonts": "^2.3.0",
