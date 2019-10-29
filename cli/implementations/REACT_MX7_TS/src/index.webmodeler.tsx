@@ -1,4 +1,5 @@
 import React from 'react';
+import { PreviewProps } from 'typings/BaseProps';
 
 import Counter from './components/Counter';
 import parseStyle from './utils/parseStyle';
@@ -22,13 +23,6 @@ import styleAsString from './style/style.scss';
  * We use `@researchgate/babel-plugin-transform-scss-import-to-string`
  * so we can just import our scss as string.
  */
-
-interface PreviewProps {
-  style: string;
-  class: string;
-  dummyKey: string;
-  [key: string]: any;
-}
 
 export const preview = ({
   style,

@@ -11,6 +11,6 @@ module.exports = {
   confDir: __dirname,
   buildDir: path.join(__dirname, 'build'),
   mxProjectRootDir,
-  widgetPackageXML: path.join(__dirname, 'src', 'package.ejs'),
-  widgetConfigXML: path.join(__dirname, 'src', 'widget.config.ejs'),
+  widgetPackageXML: path.join(__dirname, 'src', 'package.xml'),
+  widgetConfigXML: path.join(__dirname, 'src', 'widget.config.xml'),
 };

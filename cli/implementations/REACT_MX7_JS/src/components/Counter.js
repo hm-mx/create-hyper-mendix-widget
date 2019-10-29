@@ -5,7 +5,7 @@ class Counter extends React.Component {
 
   /**
    * in case your widget requires context
-   * i.e. needsEntityContext="true" in `widget.config.ejs`
+   * i.e. needsEntityContext="true" in `widget.config.xml`
    */
   componentDidMount() {
     const { mxObject } = this.props;
