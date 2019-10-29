@@ -76,50 +76,6 @@ const questions = [
    * Change the id and the filepath will break the widget.
    * So it has to follow `com.mendix.widget.custom.${WidgetName}`
    */
-
-  // {
-  //   type: 'input',
-  //   name: 'organization',
-  //   message: 'Organization:',
-  //   default: 'Mendix',
-  //   filter: input => input.trim(),
-  //   validate: input => {
-  //     const hasProperLength =
-  //       input.trim().length > 2 && input.trim().length < 20;
-  //     const isStartedWithAlphabet = /^[a-zA-Z]/.test(input);
-  //     if (!hasProperLength)
-  //       console.log(
-  //         '\nYour organization name is either too short or too long!'
-  //       );
-
-  //     if (!isStartedWithAlphabet)
-  //       console.log(
-  //         '\nYour organization name needs to start with an English Alphabet.'
-  //       );
-
-  //     return hasProperLength && isStartedWithAlphabet;
-  //   },
-  // },
-  // {
-  //   type: 'input',
-  //   name: 'scope',
-  //   message: 'Scope:',
-  //   default: 'community',
-  //   filter: input => input.trim().toLowerCase(),
-  //   validate: input => {
-  //     const hasProperLength =
-  //       input.trim().length > 2 && input.trim().length < 20;
-  //     const isAlphabet = /[a-zA-Z]/g.test(input);
-
-  //     if (!hasProperLength)
-  //       console.log('\nYour scope name is either too short or too long!');
-
-  //     if (!isAlphabet)
-  //       console.log('\nYour scope name can only contain English Alphabets.');
-
-  //     return hasProperLength && isAlphabet;
-  //   },
-  // },
 ];
 
 module.exports = (includingPackageName = false) =>

@@ -20,7 +20,11 @@
     "noUnusedParameters": true,
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": "./src",
+    "paths": {
+      "typings/*": ["typings/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["build", "node_modules", "**/*.test.tsx"]

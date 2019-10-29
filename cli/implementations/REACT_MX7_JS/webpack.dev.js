@@ -9,7 +9,6 @@ const {
   version,
   description,
   organization: companyName,
-  scope,
   widgetName,
   widgetFriendlyName,
 } = require('./package.json');
@@ -29,10 +28,7 @@ const organization = companyName
   .replace(/[&/\\#,+()$~%.'":*?<>{}_\s]/g, '')
   .toLowerCase();
 
-// for widget id, suffix is '.', for filepath, suffix is '/'
-const scopeWithSuffix = suffix => (scope ? `${scope}${suffix}` : '');
-
-const widgetDir = `com/${organization}/${scopeWithSuffix('/')}widget/custom`;
+const widgetDir = `com/${organization}/widget/custom`;
 const widgetUIDir = `${widgetDir}/ui`;
 
 const sharedConfigs = {
@@ -44,17 +40,13 @@ const widgetXMLFiles = [
   {
     template: paths.widgetPackageXML,
     filename: `package.xml`,
-    data: {
-      ...sharedConfigs,
-      SCOPE: scopeWithSuffix('/'),
-    },
+    data: sharedConfigs,
   },
   {
     template: paths.widgetConfigXML,
     filename: `${widgetName}.xml`,
     data: {
       ...sharedConfigs,
-      SCOPE: scopeWithSuffix('.'),
       FRIENDLY_NAME: widgetFriendlyName,
       WIDGET_DESC: description,
     },
