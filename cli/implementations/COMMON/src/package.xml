@@ -6,7 +6,7 @@
       <widgetFile path="<%= NAME %>.xml" />
     </widgetFiles>
     <files>
-      <file path="com/<%= ORGANIZATION %>/<%= SCOPE %>widget/custom/<%= NAME %>"/>
+      <file path="com/<%= ORGANIZATION %>/widget/custom/<%= NAME %>"/>
     </files>
   </clientModule>
 </package>

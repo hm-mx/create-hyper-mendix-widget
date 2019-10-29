@@ -1,25 +1,16 @@
 import React from 'react';
-
-interface CounterProps {
-  style?: { [key: string]: string };
-  dummyKey: string;
-  mxObject?: {
-    get: Function;
-    set: Function;
-    getGuid: Function;
-  };
-}
+import { ComponentProps } from 'typings/BaseProps';
 
 interface CounterState {
   count: number;
 }
 
-class Counter extends React.Component<CounterProps, CounterState> {
+class Counter extends React.Component<ComponentProps, CounterState> {
   state = { count: 0 };
 
   /**
    * in case your widget requires context
-   * i.e. needsEntityContext="true" in `widget.config.ejs`
+   * i.e. needsEntityContext="true" in `widget.config.xml`
    */
   componentDidMount() {
     const { mxObject } = this.props;
