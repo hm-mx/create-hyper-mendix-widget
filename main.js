@@ -26,16 +26,19 @@ const {
   afterInstallMessage,
 } = require('./cli/instructions');
 const {
+  DOJO,
   REACT_MX7,
-  REACT_MX8,
+  // REACT_MX8,
   JAVASCRIPT,
   TYPESCRIPT,
 } = require('./cli/options');
 const {
+  DOJO_TS,
+  DOJO_JS,
   REACT_MX7_JS,
   REACT_MX7_TS,
-  REACT_MX8_JS,
-  REACT_MX8_TS,
+  // REACT_MX8_JS,
+  // REACT_MX8_TS,
 } = require('./cli/implementations/IMPLEMENTATIONS');
 
 /**
@@ -145,9 +148,11 @@ const start = async () => {
           return REACT_MX7_JS;
         if (template === REACT_MX7 && language === TYPESCRIPT)
           return REACT_MX7_TS;
-        if (template === REACT_MX8 && language === JAVASCRIPT)
-          return REACT_MX8_JS;
-        return REACT_MX8_TS;
+        if (template === DOJO && language === JAVASCRIPT) return DOJO_JS;
+        return DOJO_TS;
+        // if (template === REACT_MX8 && language === JAVASCRIPT)
+        //   return REACT_MX8_JS;
+        // return REACT_MX8_TS;
       };
 
       return copyWidgetFiles(widgetFolder, getImplementation());

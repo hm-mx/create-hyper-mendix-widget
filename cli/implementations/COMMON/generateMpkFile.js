@@ -26,7 +26,10 @@ function zipDirectory(source, target) {
 const zipToFolders = async () => {
   try {
     const source = path.join(process.cwd(), 'build');
-    const target = path.join(process.cwd(), 'build', widgetName);
+    const targetFolder = path.join(process.cwd(), 'dist');
+    await fs.remove(targetFolder);
+    await fs.mkdir(targetFolder);
+    const target = path.join(targetFolder, widgetName);
     await zipDirectory(source, target);
 
     console.log(`Generated ${widgetName}.mpk`); // eslint-disable-line no-console
@@ -34,7 +37,7 @@ const zipToFolders = async () => {
     const { mxProjectRootDir } = paths;
     if (mxProjectRootDir) {
       await fs.copy(
-        `./build/${widgetName}.mpk`,
+        `./dist/${widgetName}.mpk`,
         `${mxProjectRootDir}/widgets/${widgetName}.mpk`
       );
 
