@@ -1,7 +1,8 @@
 'use strict';
 
 const {
-  // REACT_MX7,
+  REACT_MX7,
+  DOJO,
   // REACT_MX8,
   JAVASCRIPT,
   TYPESCRIPT,
@@ -47,6 +48,22 @@ const questions = [
   //     choices: [REACT_MX8, REACT_MX7],
   //     default: REACT_MX8,
   // },
+  {
+    type: 'list',
+    name: 'template',
+    message: "Which implementation you'd like to use:",
+    choices: [DOJO, REACT_MX7],
+    default: DOJO,
+  },
+  {
+    type: 'input',
+    name: 'organization',
+    message: 'Enter your organization name:',
+    default: 'mendix',
+    when: answers => {
+      return answers.template === DOJO;
+    },
+  },
   {
     type: 'list',
     name: 'language',

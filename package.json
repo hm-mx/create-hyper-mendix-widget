@@ -1,6 +1,6 @@
 {
   "name": "create-mendix-widget",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Create a working Mendix widget with one command.",
   "main": "main.js",
   "scripts": {
@@ -32,7 +32,7 @@
     "cfonts": "^2.3.0",
     "chalk": "^2.4.2",
     "fs-extra": "^7.0.1",
-    "inquirer": "^6.2.1",
+    "inquirer": "^7.0.4",
     "ora": "^3.0.0",
     "replace": "^1.1.0",
     "shelljs": "^0.8.3"

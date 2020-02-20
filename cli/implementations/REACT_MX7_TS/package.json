@@ -75,9 +75,9 @@
   "scripts": {
     "start": "cross-env MODE=development webpack-dev-server --hot --config webpack.dev.js",
     "build": "cross-env MODE=production webpack --config webpack.prod.js && npm run zip",
-    "test": "jest --verbose",
-    "test:watch": "jest --watchAll",
-    "test:coverage": "jest --verbose --coverage",
+    "test": "NODE_ENV=test jest --verbose",
+    "test:watch": "NODE_ENV=test jest --watchAll",
+    "test:coverage": "NODE_ENV=test jest --verbose --coverage",
     "zip": "node ./generateMpkFile.js"
   },
   "husky": {
