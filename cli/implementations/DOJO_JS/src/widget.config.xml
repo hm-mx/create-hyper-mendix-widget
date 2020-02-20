@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget
+  id="com.<%= ORGANIZATION %>.widget.<%= NAME %>.<%= NAME %>"
+  needsEntityContext="false"
+  xmlns="http://www.mendix.com/widget/1.0/"
+>
+  <name><%= FRIENDLY_NAME %></name>
+  <description><%= WIDGET_DESC %></description>
+  <icon></icon>
+  <properties>
+    <property
+      key="dummyKey"
+      type="string"
+      required="false"
+      defaultValue="My React Counter"
+    >
+      <caption>
+        Dummy key
+      </caption>
+      <category>Appearance</category>
+      <description>
+        This key was added to make the widget work in the Modeler (needs atleast
+        1 key). Please change/remove this one
+      </description>
+    </property>
+  </properties>
+</widget>

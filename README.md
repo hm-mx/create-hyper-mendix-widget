@@ -8,17 +8,15 @@ Create Mendix Widget with one command.
 - [Build](#build)
 
 Create Mendix Widget works on macOS, Windows, and Linux.
-If something doesn’t work, please [file an issue](https://github.com/hm-mx/create-mendix-widget/issues/new).
+If something doesn’t work, please [file an issue](https://github.com/hm-mx/create-mendix-widget/issues/new . Please DONOT file issues regarding this tool to Mendix support, or asking questions in Mendix Forum.
 
 ## Why
 
 This project is not affiliated with Mendix. It is a personal project developed for research purposes. _Use this widget creator at your own risk._
 
-Mendix is moving from Dojo to React very soon. From version 7.13.1 and above, you can already build widgets in React without Dojo. [Pluggable widget](https://docs.mendix.com/howto/extensibility/pluggable-widgets) is awesome, but it is only available on Mendix 8. From **version 7.13.1** or higher, Mendix has an _experimental_ API that allows you to use widgets in React without Dojo. Before you upgrade to Mendix 8, you might already want to rebuild your Dojo widgets in React as a PoC. Later you can easily migrate the PoC's to Pluggable Widgets for Mendix 8.
+Mendix is moving from Dojo to React very soon. From version 7.13.1 and above, you can already build widgets in React without Dojo. [Pluggable widget](https://docs.mendix.com/howto/extensibility/pluggable-widgets) is awesome, but it is only available on Mendix 8. From **version 7.13.1** or higher, Mendix has an _experimental_ API that allows you to use widgets in React without Dojo. Before you upgrade to Mendix 8, you might already want to rebuild your Dojo widgets in React. Later you can easily copy the React code and paste it into Pluggable Widget template.
 
-## **[DISCLAIMER]**
-
-This project is NOT affiliated with Mendix. Feel free to file issues to this github repo, but please DONOT file issues regarding this tool to Mendix support, or asking questions in Mendix Forum. 
+If you want to use hooks, you can choose `DOJO wrapper with Preact`, which bundles `Preact` in a DOJO widgert, so that you can freely use the latest syntax. I have tried this approach on Production, and it works pretty well. However, the size of `Preact` is ~3k. Donot use this approach is you cannot tolerate 3k more bundle size.
 
 ## Requirements
 
@@ -26,7 +24,7 @@ This project is NOT affiliated with Mendix. Feel free to file issues to this git
 - Mendix version 7.13.1 or above (also works on Mendix 8)
 - Git
 
-NOTE: the current version of React in Mendix is 16.6.3, meaning that you cannot use [React hooks](https://reactjs.org/docs/hooks-intro.html) in your Mendix widgets just yet.
+NOTE: the current version of React in Mendix is 16.6.3, meaning that you cannot use [React hooks](https://reactjs.org/docs/hooks-intro.html) in your Mendix widgets just yet. If you choose `DOJO wrapper with Preact`, then you don't have this limitation (but you will have ~3k more bundle size).
 
 ## Installation
 
