@@ -1,3 +1,5 @@
+import { Widget } from './Widget';
+
 interface BaseProps extends Widget {
   mxObject: mendix.lib.MxObject;
   // Start listing the attributes defined in `widget.config.xml`

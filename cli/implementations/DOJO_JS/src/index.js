@@ -27,14 +27,16 @@ export default declare(
       console.debug(`${this.id} >> update🎉`);
       console.debug('params', this.params);
 
-      if (contextObject && !this.subscription) {
+      if (!this.subscription) {
         this.render(this.params, contextObject, this.domNode);
-        this.subscription = window.mx.data.subscribe({
-          guid: contextObject.getGuid(),
-          callback: async guid => {
-            this.render(this.params, contextObject, this.domNode);
-          },
-        });
+        if (contextObject) {
+          this.subscription = window.mx.data.subscribe({
+            guid: contextObject.getGuid(),
+            callback: async guid => {
+              this.render(this.params, contextObject, this.domNode);
+            },
+          });
+        }
       }
 
       callback();

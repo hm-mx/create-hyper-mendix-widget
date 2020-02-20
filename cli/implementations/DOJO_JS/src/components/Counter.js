@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 const Counter = ({ style, dummyKey }) => {
   const [count, setCount] = useState(0);
-  const down = setCount(count - 1);
-  const up = setCount(count + 1);
+  const down = () => setCount(count - 1);
+  const up = () => setCount(count + 1);
 
   return (
     <div className="react-counter" style={style}>

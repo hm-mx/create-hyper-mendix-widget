@@ -3,8 +3,8 @@ import { ComponentProps } from 'typings/BaseProps';
 
 const Counter = ({ style, dummyKey }: ComponentProps) => {
   const [count, setCount] = useState<number>(0);
-  const down = setCount(count - 1);
-  const up = setCount(count + 1);
+  const down = () => setCount(count - 1);
+  const up = () => setCount(count + 1);
 
   return (
     <div className="react-counter" style={style}>
